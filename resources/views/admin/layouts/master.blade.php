@@ -14,7 +14,8 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{ asset('admin_assets/bower_components/Ionicons/css/ionicons.min.css') }}">  
   <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('admin_assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('admin_assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"> --}}
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('admin_assets/dist/css/AdminLTE.min.css') }}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -1316,7 +1317,7 @@
 <!-- Slimscroll -->
 <script src="{{ asset('admin_assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 <!-- DataTables -->
-<script src="{{ asset('admin_assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+{{-- <script src="{{ asset('admin_assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script> --}}
 <script src="{{ asset('admin_assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <!-- FastClick -->
 <script src="{{ asset('admin_assets/bower_components/fastclick/lib/fastclick.js') }}"></script>
@@ -1330,8 +1331,11 @@
 <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 @yield('js')
-<script>
+{{-- <script>
   $(function () {
     $('#post-table').DataTable()
     $('#category-table').DataTable()
@@ -1348,6 +1352,6 @@
   })
 
 
-</script>
+</script> --}}
 </body>
 </html>

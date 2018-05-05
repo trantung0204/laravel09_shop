@@ -15,6 +15,7 @@ Route::prefix('admin')->group(function(){
 	Route::middleware('auth')->group( function ()
 	{
 		Route::resource('products','Admin\ProductController');
+		Route::get('/listProducts', 'Admin\ProductController@anyData')->name('getProducts');
 	});
 });
 

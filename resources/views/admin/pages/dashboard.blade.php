@@ -1,62 +1,25 @@
 @extends('admin/layouts/master')
-{{-- @section('content')
+@section('content')
             <div class="box">
             <div class="box-header">
-              <h3 class="box-title">All Posts</h3>
+              <h3 class="box-title">All Products</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="post-table" class="table table-bordered table-striped">
+              <table id="product-table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>Thumbnail</th>
-                  <th>Title</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Category</th>
-                  <th>Author</th>
+                  <th>Name</th>
+                  <th>Sale price</th>
+                  <th>Brand</th>
+                  <th>Cateogry</th>
+                  <th>Created at</th>
                   <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id="table-body">
-
-                @foreach ($posts as $post)
-                <tr id="post-row-{{ $post->id }}">
-                  <td>{{ $post->id }}</td>
-                  <td><img style="width: 70px;" class="center-block img-rounded img-thumbnail img-responsive" src="{{ $post->thumbnail }}" alt=""></td>
-                  <td id="post-title-{{ $post->id }}">{{ $post->title }}</td>
-                  <td>{{ $post->created_at->diffForHumans() }}</td>
-                  <td>@if ($post->status==1)
-                    public
-                  @else
-                    private
-                  @endif
-                  </td>
-                  <td>{{ $post->category->name }}</td>
-                  <td>{{ $post->user->name }}</td>
-                  <td>
-                    <button type="button" class="btn btn-xs btn-info" data-url="{{route("posts.show", $post->id)  }}"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                    <button type="button" class="btn btn-xs btn-warning" data-url="{{route("posts.show", $post->id)  }}"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button type="button" class="btn btn-xs btn-danger" data-id="{{ $post->id }}" data-url="{{route("posts.destroy", $post->id)  }}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                  </td>
-                </tr>
-                @endforeach
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>#</th>
-                  <th>Thumbnail</th>
-                  <th>Title</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Category</th>
-                  <th>Author</th>
-                  <th>Action</th>
-                </tr>
-                </tfoot>
               </table>
-              <a class="btn btn-success" data-toggle="modal" href='#add' >Thêm bài viết mới</a>
+              {{-- <a class="btn btn-success" data-toggle="modal" href='#add' >Thêm bài viết mới</a> --}}
             </div>
             <!-- /.box-body -->
           </div>
@@ -64,7 +27,7 @@
 
  
 
-  <div class="modal fade" id="add">
+  {{-- <div class="modal fade" id="add">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -113,9 +76,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
-  <div class="modal fade" id="edit">
+  {{-- <div class="modal fade" id="edit">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -160,10 +123,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
 
-  <div class="modal fade" id="show">
+  {{-- <div class="modal fade" id="show">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -187,9 +150,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
 
-@endsection --}}
+@endsection 
 
 {{-- @section('js')
 <script src="{{ asset('admin_assets/js/ajax_post.js') }}"></script>
@@ -218,4 +181,27 @@
     border-radius: 0px;
   }
 </style>
+@endsection
+
+@section('js')
+
+<script>
+$(function() {
+    $('#product-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{!! route('getProducts') !!}',
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'name', name: 'name' },
+            { data: 'sale_price', name: 'sale_price' },
+            { data: 'brand_id', name: 'brand_id' },
+            { data: 'category_id', name: 'category_id' },
+            { data: 'created_at', name: 'created_at' },
+            { data: 'action', name: 'action' }
+        ]
+    });
+
+});
+</script>
 @endsection

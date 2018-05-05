@@ -11,6 +11,7 @@ use App\Color;
 use App\Size;
 use App\ProductDetail;
 use App\Image;
+use Yajra\Datatables\Datatables;
 
 class ProductController extends Controller
 {
@@ -21,9 +22,31 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::all();
+        //$products=Product::all();
         //$categories=Category::all();
-        return view('admin.pages.dashboard',compact('products'));// cách truyền khác: compact('products')
+        return view('admin.pages.dashboard');
+    }
+    public function anyData()
+    {
+        //return Datatables::of(Product::query())->make(true);
+        return Datatables::of(Product::orderBy('id','desc'))
+        ->addColumn('action', function ($product) {
+            return'
+            <button type="button" class="btn btn-xs btn-info" data-id="'.$product->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-warning" data-id="'.$product->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-danger" data-id="'.$product->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            ';
+            
+        })
+        // ->setRowClass(function ($image) {
+        //     return $image->id % 2 == 0 ? 'pink' : 'green';
+        // })
+        //->editColumn('image', '<img src=""/>')
+        //->editColumn('brand_id', 'tung{{$category_id}}')
+        //->editColumn('category_id', Category::where('id', '=',$category_id)->first()->name)
+        ->setRowId('product-row-{{$id}}')
+        // ->rawColumns(['action'])
+        ->make(true);
     }
 
     /**

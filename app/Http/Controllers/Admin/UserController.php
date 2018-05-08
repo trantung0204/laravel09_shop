@@ -4,10 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Product;
 use App\Category;
+use App\Brand;
+use App\Color;
+use App\Size;
+use App\ProductDetail;
+use App\Image;
+use App\User;
 use Yajra\Datatables\Datatables;
 
-class CategoryController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,28 +23,31 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.category');
+        return view('admin.pages.user');
     }
+
     public function anyData()
     {
         //return Datatables::of(Product::query())->make(true);
-        return Datatables::of(Category::orderBy('id','desc'))
-        ->addColumn('action', function ($category) {
+        return Datatables::of(User::orderBy('id','desc'))
+        ->addColumn('action', function ($user) {
             return'
-            <button type="button" class="btn btn-xs btn-info" data-id="'.$category->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-warning" data-id="'.$category->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-danger" data-id="'.$category->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-info" data-id="'.$user->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-warning" data-id="'.$user->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-danger" data-id="'.$user->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
             ';
             
         })
+        ->editColumn('avatar', '<img class="img-responsive center-block" style="width:70px;border-radius:5px;" src="{{$avatar}}"/>')
         // ->setRowClass(function ($image) {
         //     return $image->id % 2 == 0 ? 'pink' : 'green';
         // })
         //->editColumn('image', '<img src=""/>')
         //->editColumn('brand_id', 'tung{{$category_id}}')
         //->editColumn('category_id', Category::where('id', '=',$category_id)->first()->name)
-        ->setRowId('category-row-{{$id}}')
-        // ->rawColumns(['action'])
+        ->setRowId('user-row-{{$id}}')
+        ->setRowClass('table-row')
+        ->rawColumns(['action','avatar'])
         ->make(true);
     }
 

@@ -396,13 +396,23 @@
           </ul>
         </li> -->
         <li>
-          <a href="/admin/posts">
-            <i class="fa fa-list-alt"></i> <span>Posts</span>
+          <a href="/admin/products">
+            <i class="fa fa-list-alt"></i> <span>Products</span>
           </a>
         </li>
         <li>
           <a href="/admin/categories">
             <i class="fa fa-th"></i> <span>Categories</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/brands">
+            <i class="fa fa-registered"></i> <span>Brands</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/colors">
+            <i class="fa fa-paint-brush"></i> <span>Colors</span>
           </a>
         </li>
         <li>
@@ -413,11 +423,6 @@
         <li>
           <a href="/admin/guests">
             <i class="fa fa-users"></i> <span>Guests</span>
-          </a>
-        </li>
-        <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-tags"></i> <span>Tags</span>
           </a>
         </li>
         <!-- <li class="treeview">
@@ -564,7 +569,7 @@
     <section class="content-header">
       <h1>
         Dashboard
-        <small>Products Table</small>
+        <small>Sneaker Shop</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

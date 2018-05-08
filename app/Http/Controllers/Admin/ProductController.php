@@ -26,10 +26,24 @@ class ProductController extends Controller
         //$categories=Category::all();
         return view('admin.pages.dashboard');
     }
+    public function addForm()
+    {
+        $brands=Brand::all();
+        $categories=Category::all();
+        $colors=Color::all();
+        $sizes=Size::all();
+        return view('admin.pages.addProduct',compact('brands','categories','colors','sizes'));
+    }
     public function anyData()
     {
         //return Datatables::of(Product::query())->make(true);
-        return Datatables::of(Product::orderBy('id','desc'))
+        //
+        $products = Product::with('images')->select('products.*', 'categories.name as category_name', 'brands.name as brand_name')
+                            ->join('categories', 'products.category_id', '=', 'categories.id')
+                            ->join('brands', 'products.brand_id', '=', 'brands.id')
+                            ->orderBy('products.id', 'desc');
+
+        return Datatables::of($products)
         ->addColumn('action', function ($product) {
             return'
             <button type="button" class="btn btn-xs btn-info" data-id="'.$product->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
@@ -41,11 +55,19 @@ class ProductController extends Controller
         // ->setRowClass(function ($image) {
         //     return $image->id % 2 == 0 ? 'pink' : 'green';
         // })
-        //->editColumn('image', '<img src=""/>')
+        // ->editColumn('image_link', '<img class="img-responsive center-block" style="width:70px;" src="{{$images}}"/>')
+        ->addColumn('image_link', function (Product $product) {
+            if(isset($product->images) && isset($product->images[0])){
+                return '<img class="img-responsive center-block" style="width:70px;" src="'.$product->images[0]->link.'"/>';
+            }else{
+                return "";
+            }
+        })
         //->editColumn('brand_id', 'tung{{$category_id}}')
         //->editColumn('category_id', Category::where('id', '=',$category_id)->first()->name)
         ->setRowId('product-row-{{$id}}')
-        // ->rawColumns(['action'])
+        ->setRowClass('table-row')
+        ->rawColumns(['image_link','action'])
         ->make(true);
     }
 

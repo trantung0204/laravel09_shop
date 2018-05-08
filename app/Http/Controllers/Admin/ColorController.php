@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Category;
+use App\Color;
 use Yajra\Datatables\Datatables;
 
-class CategoryController extends Controller
+class ColorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,31 +16,34 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.category');
+        return view('admin.pages.color');
     }
+
     public function anyData()
     {
         //return Datatables::of(Product::query())->make(true);
-        return Datatables::of(Category::orderBy('id','desc'))
-        ->addColumn('action', function ($category) {
+        return Datatables::of(Color::orderBy('id','desc'))
+        ->addColumn('action', function ($color) {
             return'
-            <button type="button" class="btn btn-xs btn-info" data-id="'.$category->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-warning" data-id="'.$category->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-danger" data-id="'.$category->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-info" data-id="'.$color->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-warning" data-id="'.$color->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-danger" data-id="'.$color->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
             ';
-            
+        })
+        ->addColumn('color', function ($color) {
+            return'<div style="width:70px;height:70px;border-radius:5px;background-color: '.$color->code.';"><div>';
         })
         // ->setRowClass(function ($image) {
         //     return $image->id % 2 == 0 ? 'pink' : 'green';
         // })
-        //->editColumn('image', '<img src=""/>')
+        //->editColumn('color', '<div style="width:70px;height:70px;border-radius:5px;background-color: {{$code}};"><div>')
         //->editColumn('brand_id', 'tung{{$category_id}}')
         //->editColumn('category_id', Category::where('id', '=',$category_id)->first()->name)
-        ->setRowId('category-row-{{$id}}')
-        // ->rawColumns(['action'])
+        ->setRowId('color-row-{{$id}}')
+        ->setRowClass('table-row')
+        ->rawColumns(['action','color'])
         ->make(true);
     }
-
     /**
      * Show the form for creating a new resource.
      *

@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Category;
+use App\Guest;
 use Yajra\Datatables\Datatables;
 
-class CategoryController extends Controller
+class GuestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,28 +16,31 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.category');
+        return view('admin.pages.guest');
     }
+
     public function anyData()
     {
         //return Datatables::of(Product::query())->make(true);
-        return Datatables::of(Category::orderBy('id','desc'))
-        ->addColumn('action', function ($category) {
+        return Datatables::of(Guest::orderBy('id','desc'))
+        ->addColumn('action', function ($guest) {
             return'
-            <button type="button" class="btn btn-xs btn-info" data-id="'.$category->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-warning" data-id="'.$category->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-danger" data-id="'.$category->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-info" data-id="'.$guest->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-warning" data-id="'.$guest->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-danger" data-id="'.$guest->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
             ';
             
         })
+        ->editColumn('avatar', '<img class="img-responsive center-block" style="width:70px;border-radius:5px;" src="{{$avatar}}"/>')
         // ->setRowClass(function ($image) {
         //     return $image->id % 2 == 0 ? 'pink' : 'green';
         // })
         //->editColumn('image', '<img src=""/>')
         //->editColumn('brand_id', 'tung{{$category_id}}')
         //->editColumn('category_id', Category::where('id', '=',$category_id)->first()->name)
-        ->setRowId('category-row-{{$id}}')
-        // ->rawColumns(['action'])
+        ->setRowId('guest-row-{{$id}}')
+        ->setRowClass('table-row')
+        ->rawColumns(['action','avatar'])
         ->make(true);
     }
 

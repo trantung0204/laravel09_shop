@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Category;
+use App\Brand;
 use Yajra\Datatables\Datatables;
 
-class CategoryController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +16,17 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.category');
+        return view('admin.pages.brand');
     }
     public function anyData()
     {
         //return Datatables::of(Product::query())->make(true);
-        return Datatables::of(Category::orderBy('id','desc'))
-        ->addColumn('action', function ($category) {
+        return Datatables::of(Brand::orderBy('id','desc'))
+        ->addColumn('action', function ($brand) {
             return'
-            <button type="button" class="btn btn-xs btn-info" data-id="'.$category->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-warning" data-id="'.$category->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-danger" data-id="'.$category->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-info" data-id="'.$brand->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-warning" data-id="'.$brand->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-danger" data-id="'.$brand->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
             ';
             
         })
@@ -36,7 +36,7 @@ class CategoryController extends Controller
         //->editColumn('image', '<img src=""/>')
         //->editColumn('brand_id', 'tung{{$category_id}}')
         //->editColumn('category_id', Category::where('id', '=',$category_id)->first()->name)
-        ->setRowId('category-row-{{$id}}')
+        ->setRowId('brand-row-{{$id}}')
         // ->rawColumns(['action'])
         ->make(true);
     }

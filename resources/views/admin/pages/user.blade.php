@@ -2,37 +2,27 @@
 @section('content')
             <div class="box">
             <div class="box-header">
-              <h3 class="box-title">All Products</h3>
-              <a href="{{ asset('/admin/addProduct') }}" type="button" id="add-new" class="btn btn-success btn-xs">Add product</a>
+              <h3 class="box-title">All User</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="product-table" class="table table-bordered table-striped">
+              <table id="user-table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>Image</th>
-                  <th>Code</th>
+                  <th>Avatar</th>
                   <th>Name</th>
-                  <th>Origin price</th>
-                  <th>Sale price</th>
-                  <th>Brand</th>
-                  <th>Cateogry</th>
+                  <th>Email</th>
                   <th>Created at</th>
                   <th>Action</th>
                 </tr>
                 </thead>
-
                 <tfoot>
                 <tr>
                   <th>#</th>
-                  <th>Image</th>
-                  <th>Code</th>
+                  <th>Avatar</th>
                   <th>Name</th>
-                  <th>Sale price</th>
-                  <th>Origin price</th>
-                  <th>Brand</th>
-                  <th>Cateogry</th>
+                  <th>Email</th>
                   <th>Created at</th>
                   <th>Action</th>
                 </tr>
@@ -192,9 +182,6 @@
 @endsection --}}
 @section('css')
 <style type="text/css" media="screen">
-  #add-new{
-    margin-left: 30px;
-  }
   .table-row td{
     vertical-align: middle !important;
   }
@@ -205,19 +192,15 @@
 
 <script>
 $(function() {
-    $('#product-table').DataTable({
+    $('#user-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{!! route('getProducts') !!}',
+        ajax: '{!! route('getUsers') !!}',
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'image_link', name: 'image_link' },
-            { data: 'code', name: 'code' },
+            { data: 'avatar', name: 'name' },
             { data: 'name', name: 'name' },
-            { data: 'origin_price', name: 'origin_price' },
-            { data: 'sale_price', name: 'sale_price' },
-            { data: 'brand_name', name: 'brand_name' },
-            { data: 'category_name', name: 'category_name' },
+            { data: 'email', name: 'email' },
             { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action' }
         ]

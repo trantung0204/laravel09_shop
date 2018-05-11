@@ -1323,40 +1323,24 @@
 <script src="{{ asset('admin_assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 <!-- DataTables -->
 {{-- <script src="{{ asset('admin_assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script> --}}
-<script src="{{ asset('admin_assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+{{-- <script src="{{ asset('admin_assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script> --}}
 <!-- FastClick -->
 <script src="{{ asset('admin_assets/bower_components/fastclick/lib/fastclick.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('admin_assets/dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('admin_assets/dist/js/pages/dashboard.js') }}"></script>
+{{-- <script src="{{ asset('admin_assets/dist/js/pages/dashboard.js') }}"></script> --}}
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('admin_assets/dist/js/demo.js') }}"></script>
+{{-- <script src="{{ asset('admin_assets/dist/js/demo.js') }}"></script> --}}
 
 <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
+{{-- <script src="//code.jquery.com/jquery-1.10.2.min.js"></script> --}}
+<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 @yield('js')
-{{-- <script>
-  $(function () {
-    $('#post-table').DataTable()
-    $('#category-table').DataTable()
-    $('#user-table').DataTable()
-    $('#guest-table').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
 
-
-</script> --}}
 </body>
 </html>

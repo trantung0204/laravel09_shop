@@ -21,7 +21,7 @@ class BrandController extends Controller
     public function anyData()
     {
         //return Datatables::of(Product::query())->make(true);
-        return Datatables::of(Brand::orderBy('id','desc'))
+        return Datatables::of(Brand::all())
         ->addColumn('action', function ($brand) {
             return'
             <button type="button" class="btn btn-xs btn-info" data-id="'.$brand->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>

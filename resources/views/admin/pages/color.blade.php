@@ -6,7 +6,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="color-table" class="table table-bordered table-striped">
+              <table id="color-table" data-url="{{route('getColors')}}"  class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
@@ -28,7 +28,7 @@
                 </tr>
                 </tfoot>
               </table>
-              {{-- <a class="btn btn-success" data-toggle="modal" href='#add' >Thêm bài viết mới</a> --}}
+              <a class="btn btn-success" data-toggle="modal" href='#add' >Thêm màu mới</a> 
             </div>
             <!-- /.box-body -->
           </div>
@@ -36,46 +36,24 @@
 
  
 
-  {{-- <div class="modal fade" id="add">
+  <div class="modal fade" id="add">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Thêm mới bài viết</h4>
+          <h4 class="modal-title">Thêm mới màu</h4>
         </div>
         <div class="modal-body">
-        <form id="add-new"  method="POST" role="form"  data-url='{{route("posts.store")}}' >
+        <form id="add-new"  method="POST" role="form"  data-url='{{route("colors.store")}}' >
           {{csrf_field()}}<!-- sinh token -->
           <div class="form-group">
-            <label for="title">Title</label>
-            <input name="title" type="text" id="title" class="form-control" placeholder="Post title" required="true">
-          </div>
+            <label for="name">Name</label>
+            <input name="name" type="text" id="name" class="form-control" placeholder="Post title" required="true">
+          </div>        
           <div class="form-group">
-            <label for="thumbnail">Thumbnail</label>
-            <input name="thumbnail" type="file" id="thumbnail" class="form-control" placeholder="Input field" required="true">
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea name="description" id="description" class="form-control" rows="3" required="required"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" id="editor_content"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="category_id">Category id</label>
-            <input name="category_id" type="text" id="category_id" class="form-control" placeholder="Post title" required="true">
-            <select name="category_id" id="category_id" class="form-control" required="required">
-              @foreach ($categories as $category)
-                <option value="{{$category->id}}">{{$category->name}}</option>
-              @endforeach
-            </select>
-          </div>
-          <div class="form-group">
-            <label id="tag-label" for="tag">Tag</label>
-            <input name="tag" type="text" id="tag" class="form-control" placeholder="add tag" required="true"  data-role="tagsinput">
-          </div>
-        
+            <label for="name">Color code</label>
+            <input name="code" type="color" id="code" placeholder="Post title" required="true">
+          </div>        
           
         </div>
         <div class="modal-footer">
@@ -85,9 +63,9 @@
         </div>
       </div>
     </div>
-  </div> --}}
+  </div>
 
-  {{-- <div class="modal fade" id="edit">
+  <div class="modal fade" id="edit">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -98,30 +76,13 @@
         <form id="edit-form"  method="POST" role="form" >
           {{csrf_field()}}<!-- sinh token -->
           <div class="form-group">
-            <label for="title">Title</label>
-            <input name="title" type="text" id="post-edit-title" class="form-control" placeholder="Post title" required="true" value="">
-          </div>
+            <label for="name">Name</label>
+            <input name="name" type="text" id="edit_name" class="form-control" placeholder="Post title" required="true">
+          </div>        
           <div class="form-group">
-            <label for="thumbnail">Thumbnail</label>
-            <input name="thumbnail" type="file" id="post-edit-thumbnail" class="form-control" placeholder="Input field" value="">
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea name="description" id="post-edit-description" class="form-control" rows="3" required="required"></textarea value="">
-          </div>
-          <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" id="post_edit_content"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="category_id">Category id</label>
-            <!-- <input name="category_id" type="text" id="category_id" class="form-control" placeholder="Post title" required="true"> -->
-            <select name="category_id" id="post-edit-category_id" class="form-control" required="required">
-              @foreach ($categories as $category)
-                <option value="{{$category->id}}">{{$category->name}}</option>
-              @endforeach
-            </select>
-          </div>
+            <label for="name">Color code</label>
+            <input name="code" type="color" id="edit_code" placeholder="Post title" required="true" >
+          </div>        
         
           
         </div>
@@ -132,7 +93,7 @@
         </div>
       </div>
     </div>
-  </div> --}}
+  </div>
 
 
   {{-- <div class="modal fade" id="show">
@@ -190,22 +151,5 @@
 
 @section('js')
 
-<script>
-$(function() {
-    $('#color-table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! route('getColors') !!}',
-        columns: [
-            { data: 'id', name: 'id' },
-            { data: 'color', name: 'color' },
-            { data: 'name', name: 'name' },
-            { data: 'code', name: 'code' },
-            { data: 'created_at', name: 'created_at' },
-            { data: 'action', name: 'action' }
-        ]
-    });
-
-});
-</script>
+<script src="{{ asset('admin_assets/js/ajax_color.js') }}"></script>
 @endsection

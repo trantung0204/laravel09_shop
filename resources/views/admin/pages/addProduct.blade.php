@@ -1,6 +1,6 @@
 @extends('admin/layouts/master')
 @section('content')
-  <form id="add-product"  method="POST" role="form"  action="" >
+  <form id="add-product"  method="POST" role="form"  action="{{ route('products.store') }}" >
     {{csrf_field()}}
     <legend>Add Product</legend>
   
@@ -38,30 +38,42 @@
       </div>
     </div>
     <div class="col-sm-6 col-xm-12">
-      <table class="table table-hover">
+      <label >Quantity - Color - Size</label>
+      <table class="table table-hover thead-light " >
         <thead>
           <tr>
+            <th></th>
             @foreach ($colors as $color)
-              <th>{{$color->name}} <i style="color:{{$color->code}}" class="fa fa-circle" aria-hidden="true"></i>
+              <th >{{$color->name}} <i style="color:{{$color->code}}" class="fa fa-circle" aria-hidden="true"></i>
               </th>
             @endforeach
           </tr>
         </thead>
         <tbody>
-          @foreach ($colors as $color)
-            @foreach ($sizes as $size)
-              <tr>
-                <td></td>
-              </tr>
+          @foreach ($sizes as $size)
+            <tr>
+              <th>Size {{$size->size}}</th>
+            @foreach ($colors as $color)
+              <td><input class="form-control" style="width"  type="number" name="quantity-{{$size->id}}-{{$color->id}}" id="{{$size->id}}-{{$color->id}}"  placeholder="{{$size->size}}-{{$color->name}}"></td>
             @endforeach
+            </tr>
           @endforeach
         </tbody>
       </table>
+      <div class="form-group col-sm-6">
+        <label for="origin_price">Origin Price</label>
+        <input name="origin_price" type="number" id="origin_price" class="form-control" placeholder="Origin Price VNĐ" required="true">
+      </div>
+      <div class="form-group col-sm-6">
+        <label for="sale_price">Sale Price</label>
+        <input name="sale_price" type="number" id="sale_price" class="form-control" placeholder="Sale Price VNĐ" required="true">
+      </div>
     </div>
   
     
     <div class="col-sm-12">
-      <button type="submit" class="btn btn-primary">Submit</button>       
+      <button type="submit" style="float: right;" class="btn btn-primary">Submit</button>       
+      <button type="reset" style="float: right; margin-right: 20px;" class="btn btn-default">Reset</button>       
     </div>
   </form>
 @endsection 
@@ -70,7 +82,6 @@
 <script>
   
   CKEDITOR.replace( 'editor_content' );
-  CKEDITOR.replace( 'post_edit_content' );
   //CKEDITOR.replace( 'econtent' );
   CKEDITOR.editorConfig = function( config ) {
         // Define changes to default configuration here. For example:

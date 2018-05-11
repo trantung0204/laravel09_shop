@@ -22,16 +22,15 @@ class ColorController extends Controller
     public function anyData()
     {
         //return Datatables::of(Product::query())->make(true);
-        return Datatables::of(Color::orderBy('id','desc'))
+        return Datatables::of(Color::all())
         ->addColumn('action', function ($color) {
             return'
-            <button type="button" class="btn btn-xs btn-info" data-id="'.$color->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-warning" data-id="'.$color->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-danger" data-id="'.$color->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-warning" data-url="'.route('colors.update', $color->id).'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-danger" data-id="'.$color->id.'" data-url="'.route('colors.destroy', $color->id).'"><i class="fa fa-trash" aria-hidden="true"></i></button>
             ';
         })
         ->addColumn('color', function ($color) {
-            return'<div style="width:70px;height:70px;border-radius:5px;background-color: '.$color->code.';"><div>';
+            return'<div  style="width:70px;height:70px;border-radius:5px;background-color: '.$color->code.';"><div>';
         })
         // ->setRowClass(function ($image) {
         //     return $image->id % 2 == 0 ? 'pink' : 'green';
@@ -62,7 +61,7 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json(['data' => Color::storeData($request->only(['name','code','slug']))], 200);
     }
 
     /**
@@ -73,7 +72,7 @@ class ColorController extends Controller
      */
     public function show($id)
     {
-        //
+        return Color::find($id);
     }
 
     /**
@@ -96,7 +95,15 @@ class ColorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $result = Color::updateData($id,$request->only(['name','code','slug']));
+        if($result){
+            $color= Color::find($id);
+            return response()->json([
+                'data'=>$color
+            ], 200);
+        }else{
+            return response()->json( 500);
+        }
     }
 
     /**
@@ -107,6 +114,6 @@ class ColorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Color::del($id);
     }
 }

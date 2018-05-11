@@ -22,7 +22,7 @@ class GuestController extends Controller
     public function anyData()
     {
         //return Datatables::of(Product::query())->make(true);
-        return Datatables::of(Guest::orderBy('id','desc'))
+        return Datatables::of(Guest::all())
         ->addColumn('action', function ($guest) {
             return'
             <button type="button" class="btn btn-xs btn-info" data-id="'.$guest->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>

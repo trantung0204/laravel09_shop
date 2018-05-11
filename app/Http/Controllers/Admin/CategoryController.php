@@ -21,7 +21,7 @@ class CategoryController extends Controller
     public function anyData()
     {
         //return Datatables::of(Product::query())->make(true);
-        return Datatables::of(Category::orderBy('id','desc'))
+        return Datatables::of(Category::all())
         ->addColumn('action', function ($category) {
             return'
             <button type="button" class="btn btn-xs btn-info" data-id="'.$category->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>

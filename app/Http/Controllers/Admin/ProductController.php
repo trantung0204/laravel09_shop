@@ -40,8 +40,7 @@ class ProductController extends Controller
         //
         $products = Product::with('images')->select('products.*', 'categories.name as category_name', 'brands.name as brand_name')
                             ->join('categories', 'products.category_id', '=', 'categories.id')
-                            ->join('brands', 'products.brand_id', '=', 'brands.id')
-                            ->orderBy('products.id', 'desc');
+                            ->join('brands', 'products.brand_id', '=', 'brands.id');
 
         return Datatables::of($products)
         ->addColumn('action', function ($product) {
@@ -60,9 +59,11 @@ class ProductController extends Controller
             if(isset($product->images) && isset($product->images[0])){
                 return '<img class="img-responsive center-block" style="width:70px;" src="'.$product->images[0]->link.'"/>';
             }else{
-                return "";
+                return '<img class="img-responsive center-block" style="width:70px;" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"/>';
             }
         })
+        ->editColumn('origin_price', '{{$origin_price}} VNĐ')
+        ->editColumn('sale_price', '{{$sale_price}} VNĐ')
         //->editColumn('brand_id', 'tung{{$category_id}}')
         //->editColumn('category_id', Category::where('id', '=',$category_id)->first()->name)
         ->setRowId('product-row-{{$id}}')
@@ -89,7 +90,36 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
+        $productData=array();
+        $productData['code']="#".time();
+        $productData['name']=$request->name;
+        $productData['origin_price']=$request->origin_price;
+        $productData['sale_price']=$request->sale_price;
+        $productData['description']=$request->description;
+        $productData['content']=$request->content;
+        $productData['slug']=str_slug($request->name, '-');
+        $productData['brand_id']=$request->brand_id;
+        $productData['category_id']=$request->category_id;
+        Product::create($productData);
+        $numOfColor=Color::orderBy('id', 'desc')->first()->id;
+        $numOfSize=Size::orderBy('id', 'desc')->first()->id;
+        for ($i=1; $i <= $numOfSize; $i++) { 
+            for ($j=1; $j <=$numOfColor ; $j++) { 
+                if (($request->input('quantity-'.$i.'-'.$j)!=null)&&($request->input('quantity-'.$i.'-'.$j))>0) {
+                    $productDetailData=array();
+                    $productDetailData['product_id']=$productData['code'];
+                    $productDetailData['color_id']=$j;
+                    $productDetailData['size_id']=$i;
+                    $productDetailData['quantity']=$request->input('quantity-'.$i.'-'.$j);
+                    ProductDetail::create($productDetailData);
+                    //dd($productDetailData);
+                    
+                }
+            }
+        }
+        //dd($productData);
+        return redirect('admin/products');
+        //dd($numOfColor);
     }
 
     /**

@@ -30,13 +30,13 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>User</b>LOGIN</a>
+    <a href="../../index2.html"><b>Admin</b>LOGIN</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="{{ route('login') }}" method="post">
+    <form action="{{ route('admin.auth') }}" method="post">
     	@csrf
       <div class="form-group has-feedback">
         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="Email">

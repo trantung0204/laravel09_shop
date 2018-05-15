@@ -12,10 +12,11 @@
 */
 
 Route::prefix('admin')->group(function(){
-	Route::middleware('auth')->group( function ()
+	Route::middleware('admin.auth')->group( function ()
 	{
 		Route::resource('products','Admin\ProductController');
 		Route::get('/listProducts', 'Admin\ProductController@anyData')->name('getProducts');
+		Route::get('/listProductDetails/{code}', 'Admin\ProductController@getDetail')->name('getProductDetails');
 		Route::resource('categories','Admin\CategoryController');
 		Route::get('/listCategories', 'Admin\CategoryController@anyData')->name('getCategories');
 		Route::resource('brands','Admin\BrandController');
@@ -24,11 +25,24 @@ Route::prefix('admin')->group(function(){
 		Route::get('/listUsers', 'Admin\UserController@anyData')->name('getUsers');
 		Route::resource('colors','Admin\ColorController');
 		Route::get('/listColors', 'Admin\ColorController@anyData')->name('getColors');
-		Route::resource('guests','Admin\GuestController');
-		Route::get('/listGuests', 'Admin\GuestController@anyData')->name('getGuests');
+		Route::resource('admins','Admin\AdminController');
+		Route::get('/listAdmins', 'Admin\AdminController@anyData')->name('getAdmins');
 
-		Route::get('/addProduct', 'Admin\ProductController@addForm')->name('getGuests');
+		Route::get('/addProduct', 'Admin\ProductController@addForm')->name('addProduct');
 	});
+    Route::get('login', 'AdminAuth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('login', 'AdminAuth\AdminLoginController@login')->name('admin.auth');
+    Route::post('logout', 'AdminAuth\AdminLoginController@logout')->name('admin.logout');
+
+    
+    Route::get('register', 'AdminAuth\AdminRegisterController@showRegistrationForm')->name('admin.register');
+    Route::post('register', 'AdminAuth\AdminRegisterController@register')->name('admin.signup');
+
+    
+    // Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    // Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    // Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    // Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 });
 
 Auth::routes();

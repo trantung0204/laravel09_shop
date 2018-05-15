@@ -14,8 +14,8 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{ asset('admin_assets/bower_components/Ionicons/css/ionicons.min.css') }}">  
   <!-- DataTables -->
-  {{-- <link rel="stylesheet" href="{{ asset('admin_assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"> --}}
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="{{ asset('admin_assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+  {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"> --}}
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('admin_assets/dist/css/AdminLTE.min.css') }}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -273,28 +273,31 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="
-                @if (isset(Auth::user()->avatar))
-                  {{ Auth::user()->avatar}}
+                @if (!empty(Auth::guard('admin')->user()->avatar))
+                  {{ dd("Dfdf")}}
+                  {{ Auth::guard('admin')->user()->avatar}}
                 @else
+                  
                   {{ asset('admin_assets/dist/img/default-avatar.jpg') }}
+                  
                 @endif
                 
                 " class="user-image" alt="User Image">
-              <span class="hidden-xs">{{ Auth::user()->name}}</span>
+              <span class="hidden-xs">{{ Auth::guard('admin')->user()->name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="
-                @if (isset(Auth::user()->avatar))
-                  {{ Auth::user()->avatar}}
+                @if (!empty(Auth::guard('admin')->user()->avatar))
+                  {{ Auth::guard('admin')->user()->avatar}}
                 @else
                   {{ asset('admin_assets/dist/img/default-avatar.jpg') }}
                 @endif" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name}}
-                  <small>Member since {{ Auth::user()->created_at->format('M, Y')}}</small>
+                  {{ Auth::guard('admin')->user()->name}}
+                  <small>Member since {{ Auth::guard('admin')->user()->created_at}}</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -320,7 +323,7 @@
                 <div class="pull-right">
                   <a href="{{ route('logout') }}"
                      onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out</a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                       @csrf
                   </form>
                 </div>
@@ -343,14 +346,14 @@
       <div class="user-panel">
         <div class="pull-left image">
           <img src="
-                @if (isset(Auth::user()->avatar))
-                  {{ Auth::user()->avatar}}
+                @if (!empty(Auth::guard('admin')->user()->avatar))
+                  {{ Auth::guard('admin')->user()->avatar}}
                 @else
                   {{ asset('admin_assets/dist/img/default-avatar.jpg') }}
                 @endif" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{Auth::user()->name}}</p>
+          <p>{{Auth::guard('admin')->user()->name}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -417,12 +420,12 @@
         </li>
         <li>
           <a href="/admin/users">
-            <i class="fa fa-user"></i> <span>Users</span>
+            <i class="fa fa-users"></i> <span>Users</span>
           </a>
         </li>
         <li>
-          <a href="/admin/guests">
-            <i class="fa fa-users"></i> <span>Guests</span>
+          <a href="/admin/admins">
+            <i class="fa fa-shield"></i> <span>Admin</span>
           </a>
         </li>
         <!-- <li class="treeview">
@@ -1322,8 +1325,8 @@
 <!-- Slimscroll -->
 <script src="{{ asset('admin_assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 <!-- DataTables -->
-{{-- <script src="{{ asset('admin_assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script> --}}
-{{-- <script src="{{ asset('admin_assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script> --}}
+<script src="{{ asset('admin_assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin_assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <!-- FastClick -->
 <script src="{{ asset('admin_assets/bower_components/fastclick/lib/fastclick.js') }}"></script>
 <!-- AdminLTE App -->
@@ -1339,7 +1342,7 @@
 
 
 {{-- <script src="//code.jquery.com/jquery-1.10.2.min.js"></script> --}}
-<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+{{-- <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script> --}}
 @yield('js')
 
 </body>

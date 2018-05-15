@@ -16,6 +16,23 @@
 
 	return title.replace(new RegExp('^[' + separator + '\\s]+|[' + separator + '\\s]+$', 'g'),'');
 }*/
+// $(function() {
+// 	var url=$('#color-table').attr('data-url');
+//     var colorTable = $('#color-table').DataTable({
+//         processing: true,
+//         serverSide: true,
+//         ajax: url,
+//         columns: [
+//             { data: 'id', name: 'id' },
+//             { data: 'color', name: 'color' },
+//             { data: 'name', name: 'name' },
+//             { data: 'code', name: 'code' },
+//             { data: 'created_at', name: 'created_at' },
+//             { data: 'action', name: 'action' }
+//         ]
+//     });
+
+// });
 function slug(title)
 {
     var slug;
@@ -52,6 +69,19 @@ function slug(title)
 }
 
 	$(function () {
+		var url=$('#brand-table').attr('data-url');
+	    var brandTable = $('#brand-table').DataTable({
+	        processing: true,
+	        serverSide: true,
+	        ajax: url,
+	        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'name', name: 'name' },
+            { data: 'created_at', name: 'created_at' },
+            { data: 'updated_at', name: 'updated_at' },
+            { data: 'action', name: 'action' }
+        ]
+	    });
 		/*$('.btn-info').click(function () {
 			$('#show').modal('show');
 		})*/
@@ -69,14 +99,14 @@ function slug(title)
 				type: 'post',
 				url: url,
 				data: {
-					name: $('#add-name').val(),
-					email: $('#add-email').val(),
-					password: $('#add-password').val(),
+					name: $('#name').val(),
+					slug: slug($('#name').val()),
 				},
 				success: function (response) {
+					//console.log("dfdf");
 					$('#add').modal('hide');
 					toastr.success('Thành công!');
-					$('#table-body').append('<tr id="guest-row-'+response.id+'"><td>'+response.id+'</td><td id="guest-name-'+response.id+'">'+response.name+'</td><td id="guest-email-'+response.id+'">'+response.email+'</td> <td>'+response.created_at+'</td> <td>'+response.updated_at+'</td> <td><button type="button" class="btn btn-xs btn-info" data-id="'+response.id+'"><i class="fa fa-plus" aria-hidden="true"></i></button> <button type="button" class="btn btn-xs btn-warning"  data-url="http://tungdeptrai.org/admin/guests/'+response.id+'"><i class="fa fa-pencil" aria-hidden="true"></i></button> <button type="button" class="btn btn-xs btn-danger" data-id="'+response.id+'" data-url="http://tungdeptrai.org/admin/guests/'+response.id+'"><i class="fa fa-trash" aria-hidden="true"></i></button></td> </tr>');
+					brandTable.ajax.reload();
 				},
 				error: function (error) {
 					
@@ -86,22 +116,22 @@ function slug(title)
 
 		$('#edit-form').on('submit',function (e) {
 			e.preventDefault();
-			var url=$('#edit-submit').data('url');
+
+			var url=$('#edit-submit').attr('data-url');
 			var id=$('#edit-submit').data('id');
+			console.log(url);
 			$.ajax({
 				type: 'put',
 				url: url,
 				data: {
-					name: $('#guest-edit-name').val(),
-					email: $('#guest-edit-email').val(),
-					password: $('#guest-edit-password').val(),
+					name: $('#edit_name').val(),
+					slug: slug($('#edit_name').val()),
 				},
 				success: function (response) {
 					//console.log(response);
 					$('#edit').modal('hide');
-					$('#guest-edit-password').val("");
-					$('#guest-name-'+id).text(response.name);
-					$('#guest-email-'+id).text(response.email);
+					
+					brandTable.ajax.reload();
 					//$('#product-price-'+id).text(response.data.price+" $");
 					toastr.success('Đã lưu thay đổi');
 					//toastr.success('Thành công!');
@@ -113,27 +143,38 @@ function slug(title)
 			})
 		});
 
-		$(document).on('click','.btn-info',function () {
-			$('#show').modal('show');
-			var url=$(this).data('url');
-			console.log(url);
-			$.ajax({
-				type: 'get',
-				url: url,
+		// $(document).on('click','.btn-info',function () {
+		// 	$('#show').modal('show');
+		// 	var url=$(this).data('url');
+		// 	console.log(url);
+		// 	$.ajax({
+		// 		type: 'get',
+		// 		url: url,
 
-				success: function (response) {
-					$('#name-detail').text(response.name);
-					$('#email-detail').text(response.email)
-					$('#created_at-detail').text(response.created_at);
-					$('#updated_at-detail').text(response.updated_at);
-				},
-				error: function (error) {
-				}
-			})
-		})
+		// 		success: function (response) {
+		// 			$("#detail-table-body").empty();
+		// 			response.forEach(function (item, index) {
+		// 				//alert('ok');
+		// 				var status = (item.status == 1) ? "public" : "private";
+		// 				$('#detail-table-body').append('<tr><td>'+(index+1)+'</td><td>'+item.title+'</td><td>'+status+'</td><td>'+item.created_at+'</td><td>'+item.updated_at+'</td></tr>');
+		// 			})
+		// 			/*$('#post-id').text(response.id);
+		// 			$('#post-name').text(response.name);
+		// 			$('#post-price').text(response.price+" $");
+		// 			$('#post-created-at').text(response.created_at);
+		// 			$('#post-updated-at').text(response.updated_at);*/
+		// 		},
+		// 		error: function (error) {
+		// 		}
+		// 	})
+		// })
+		
 		$(document).on('click','.btn-warning',function () {
 			$('#edit').modal('show');
 			var url=$(this).data('url');
+			$('#edit-submit').attr('data-url', url);
+
+
 			//alert(id);
 			$.ajax({
 				type: 'get',
@@ -141,9 +182,9 @@ function slug(title)
 
 				success: function (response) {
 
-					$('#guest-edit-name').val(response.name);
-					$('#guest-edit-email').val(response.email)
-					$('#edit-submit').attr("data-url", "/admin/guests/"+response.id);
+					$('#edit_name').val(response.name);
+					//$('#edit-submit').data("id", response.id);
+					$('#edit-submit').attr("data-url", "/admin/brands/"+response.id);
 					$('#edit-submit').attr("data-id",response.id);
 				},
 				error: function (error) {
@@ -182,16 +223,16 @@ function slug(title)
 				    swal("Poof! Your category has been deleted!", {
 				      icon: "success",
 				    });
+					//var id=$(this).data('id');
 					var url=$(this).data('url');
-					var id=$(this).data('id');
 					$.ajax({
 						type: 'delete',
 						url: url,
 
 						success: function (response) {
 							//console.log(response);
-							//toastr.error('Đã xóa sản phẩm');
-							$('#guest-row-'+id).hide();
+							toastr.error('Đã xóa sản phẩm');
+							brandTable.ajax.reload();
 						},
 						error: function (error) {
 							

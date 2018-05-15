@@ -118,7 +118,7 @@ function slug(title)
 
 		$('#edit-form').on('submit',function (e) {
 			e.preventDefault();
-			var url=$('#edit-submit').data('url');
+			var url=$('#edit-submit').attr('data-url');
 			var id=$('#edit-submit').data('id');
 			$.ajax({
 				type: 'put',

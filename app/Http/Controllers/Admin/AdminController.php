@@ -4,17 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Product;
-use App\Category;
-use App\Brand;
-use App\Color;
-use App\Size;
-use App\ProductDetail;
-use App\Image;
-use App\User;
+use App\Admin;
 use Yajra\Datatables\Datatables;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,18 +16,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.user');
+        return view('admin.pages.admin');
     }
-
     public function anyData()
     {
         //return Datatables::of(Product::query())->make(true);
-        return Datatables::of(User::all())
-        ->addColumn('action', function ($user) {
+        return Datatables::of(Admin::all())
+        ->addColumn('action', function ($admin) {
             return'
-            <button type="button" class="btn btn-xs btn-info" data-id="'.$user->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-warning" data-id="'.$user->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-danger" data-id="'.$user->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-info" data-url="'.route('admins.update', $admin->id).'" data-id="'.$admin->id.'"><i class="fa fa-picture-o" aria-hidden="true"></i> Update Avatar</button>
             ';
             
         })
@@ -51,11 +41,12 @@ class UserController extends Controller
         //->editColumn('image', '<img src=""/>')
         //->editColumn('brand_id', 'tung{{$category_id}}')
         //->editColumn('category_id', Category::where('id', '=',$category_id)->first()->name)
-        ->setRowId('user-row-{{$id}}')
+        ->setRowId('admin-row-{{$id}}')
         ->setRowClass('table-row')
         ->rawColumns(['action','avatar'])
         ->make(true);
     }
+
 
     /**
      * Show the form for creating a new resource.

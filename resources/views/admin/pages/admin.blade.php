@@ -2,11 +2,11 @@
 @section('content')
             <div class="box">
             <div class="box-header">
-              <h3 class="box-title">All Guest</h3>
+              <h3 class="box-title">All Admin</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="guest-table" class="table table-bordered table-striped">
+              <table id="admin-table" data-url="{{route('getAdmins')}}" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
@@ -14,6 +14,7 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Created at</th>
+                  <th>Updated at</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -24,6 +25,7 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Created at</th>
+                  <th>Updated at</th>
                   <th>Action</th>
                 </tr>
                 </tfoot>
@@ -87,40 +89,22 @@
     </div>
   </div> --}}
 
-  {{-- <div class="modal fade" id="edit">
+  <div class="modal fade" id="edit">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Sửa bài viết</h4>
+          <h4 class="modal-title">Edit user profile</h4>
         </div>
         <div class="modal-body">
         <form id="edit-form"  method="POST" role="form" >
           {{csrf_field()}}<!-- sinh token -->
+          <div class="col-sm-4 col-offset-4 centered">
+            <img class="img-circle img-responsive" src="" alt="">
+          </div>
           <div class="form-group">
             <label for="title">Title</label>
             <input name="title" type="text" id="post-edit-title" class="form-control" placeholder="Post title" required="true" value="">
-          </div>
-          <div class="form-group">
-            <label for="thumbnail">Thumbnail</label>
-            <input name="thumbnail" type="file" id="post-edit-thumbnail" class="form-control" placeholder="Input field" value="">
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea name="description" id="post-edit-description" class="form-control" rows="3" required="required"></textarea value="">
-          </div>
-          <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" id="post_edit_content"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="category_id">Category id</label>
-            <!-- <input name="category_id" type="text" id="category_id" class="form-control" placeholder="Post title" required="true"> -->
-            <select name="category_id" id="post-edit-category_id" class="form-control" required="required">
-              @foreach ($categories as $category)
-                <option value="{{$category->id}}">{{$category->name}}</option>
-              @endforeach
-            </select>
           </div>
         
           
@@ -132,7 +116,7 @@
         </div>
       </div>
     </div>
-  </div> --}}
+  </div>
 
 
   {{-- <div class="modal fade" id="show">
@@ -190,12 +174,13 @@
 
 @section('js')
 
-<script>
+<script src="{{ asset('admin_assets/js/ajax_admin.js') }}"></script>
+{{-- <script>
 $(function() {
-    $('#guest-table').DataTable({
+    $('#admin-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{!! route('getGuests') !!}',
+        ajax: '{!! route('getAdmins') !!}',
         columns: [
             { data: 'id', name: 'id' },
             { data: 'avatar', name: 'name' },
@@ -208,4 +193,4 @@ $(function() {
 
 });
 </script>
-@endsection
+ --}}@endsection

@@ -6,7 +6,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="category-table" class="table table-bordered table-striped">
+              <table id="category-table" data-url='{{route("getCategories")}}' class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>#</th>
@@ -26,7 +26,7 @@
                 </tr>
                 </tfoot>
               </table>
-              {{-- <a class="btn btn-success" data-toggle="modal" href='#add' >Thêm bài viết mới</a> --}}
+              <a class="btn btn-success" data-toggle="modal" href='#add' >Add more category</a> 
             </div>
             <!-- /.box-body -->
           </div>
@@ -34,44 +34,19 @@
 
  
 
-  {{-- <div class="modal fade" id="add">
+  <div class="modal fade" id="add">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Thêm mới bài viết</h4>
+          <h4 class="modal-title">Add new categories</h4>
         </div>
         <div class="modal-body">
-        <form id="add-new"  method="POST" role="form"  data-url='{{route("posts.store")}}' >
+        <form id="add-new"  method="POST" role="form" data-url='{{route("categories.store")}}' >
           {{csrf_field()}}<!-- sinh token -->
           <div class="form-group">
-            <label for="title">Title</label>
-            <input name="title" type="text" id="title" class="form-control" placeholder="Post title" required="true">
-          </div>
-          <div class="form-group">
-            <label for="thumbnail">Thumbnail</label>
-            <input name="thumbnail" type="file" id="thumbnail" class="form-control" placeholder="Input field" required="true">
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea name="description" id="description" class="form-control" rows="3" required="required"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" id="editor_content"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="category_id">Category id</label>
-            <input name="category_id" type="text" id="category_id" class="form-control" placeholder="Post title" required="true">
-            <select name="category_id" id="category_id" class="form-control" required="required">
-              @foreach ($categories as $category)
-                <option value="{{$category->id}}">{{$category->name}}</option>
-              @endforeach
-            </select>
-          </div>
-          <div class="form-group">
-            <label id="tag-label" for="tag">Tag</label>
-            <input name="tag" type="text" id="tag" class="form-control" placeholder="add tag" required="true"  data-role="tagsinput">
+            <label for="name">Category name</label>
+            <input name="name" type="text" id="name" class="form-control" placeholder="Category name" required="true">
           </div>
         
           
@@ -83,42 +58,21 @@
         </div>
       </div>
     </div>
-  </div> --}}
+  </div> 
 
-  {{-- <div class="modal fade" id="edit">
+  <div class="modal fade" id="edit">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Sửa bài viết</h4>
+          <h4 class="modal-title">Edit category</h4>
         </div>
         <div class="modal-body">
         <form id="edit-form"  method="POST" role="form" >
           {{csrf_field()}}<!-- sinh token -->
           <div class="form-group">
-            <label for="title">Title</label>
-            <input name="title" type="text" id="post-edit-title" class="form-control" placeholder="Post title" required="true" value="">
-          </div>
-          <div class="form-group">
-            <label for="thumbnail">Thumbnail</label>
-            <input name="thumbnail" type="file" id="post-edit-thumbnail" class="form-control" placeholder="Input field" value="">
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea name="description" id="post-edit-description" class="form-control" rows="3" required="required"></textarea value="">
-          </div>
-          <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" id="post_edit_content"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="category_id">Category id</label>
-            <!-- <input name="category_id" type="text" id="category_id" class="form-control" placeholder="Post title" required="true"> -->
-            <select name="category_id" id="post-edit-category_id" class="form-control" required="required">
-              @foreach ($categories as $category)
-                <option value="{{$category->id}}">{{$category->name}}</option>
-              @endforeach
-            </select>
+            <label for="name">Category name</label>
+            <input name="name" type="text" id="edit_name" class="form-control" placeholder="Category name" required="true">
           </div>
         
           
@@ -130,7 +84,7 @@
         </div>
       </div>
     </div>
-  </div> --}}
+  </div>
 
 
   {{-- <div class="modal fade" id="show">
@@ -192,7 +146,8 @@
 
 @section('js')
 
-<script>
+<script src="{{ asset('admin_assets/js/ajax_category.js') }}"></script>
+{{-- <script>
 $(function() {
     $('#category-table').DataTable({
         processing: true,
@@ -208,5 +163,5 @@ $(function() {
     });
 
 });
-</script>
+</script> --}}
 @endsection

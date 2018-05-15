@@ -1,38 +1,3 @@
-	
-
-/*function slug(title, separator) {
-	if(typeof separator == 'undefined') separator = '-';
-
-	// Convert all dashes/underscores into separator
-	var flip = separator == '-' ? '_' : '-';
-	title = title.replace(flip, separator);
-
-	// Remove all characters that are not the separator, letters, numbers, or whitespace.
-	title = title.toLowerCase()
-			.replace(new RegExp('[^a-z0-9' + separator + '\\s]', 'g'), '');
-
-	// Replace all separator characters and whitespace by a single separator
-	title = title.replace(new RegExp('[' + separator + '\\s]+', 'g'), separator);
-
-	return title.replace(new RegExp('^[' + separator + '\\s]+|[' + separator + '\\s]+$', 'g'),'');
-}*/
-// $(function() {
-// 	var url=$('#color-table').attr('data-url');
-//     var colorTable = $('#color-table').DataTable({
-//         processing: true,
-//         serverSide: true,
-//         ajax: url,
-//         columns: [
-//             { data: 'id', name: 'id' },
-//             { data: 'color', name: 'color' },
-//             { data: 'name', name: 'name' },
-//             { data: 'code', name: 'code' },
-//             { data: 'created_at', name: 'created_at' },
-//             { data: 'action', name: 'action' }
-//         ]
-//     });
-
-// });
 function slug(title)
 {
     var slug;
@@ -69,16 +34,21 @@ function slug(title)
 }
 
 	$(function () {
-		var url=$('#category-table').attr('data-url');
-	    var categoryTable = $('#category-table').DataTable({
+		var url=$('#product-table').attr('data-url');
+	    var productTable = $('#product-table').DataTable({
 	        processing: true,
 	        serverSide: true,
 	        ajax: url,
 	        columns: [
-	            { data: 'id', name: 'id' },
-	            { data: 'name', name: 'name' },
-	            { data: 'created_at', name: 'created_at' },
-	            { data: 'updated_at', name: 'updated_at' },
+	            { data: 'id', name: 'products.id' },
+	            { data: 'image_link', name: 'image_link' },
+	            { data: 'code', name: 'products.code' },
+	            { data: 'name', name: 'products.name' },
+	            { data: 'origin_price', name: 'products.origin_price' },
+	            { data: 'sale_price', name: 'products.sale_price' },
+	            { data: 'brand_name', name: 'products.brand_id' },
+	            { data: 'category_name', name: 'products.category_id' },
+	            { data: 'created_at', name: 'products.created_at' },
 	            { data: 'action', name: 'action' }
 	        ]
 	    });
@@ -106,7 +76,7 @@ function slug(title)
 					console.log("dfdf");
 					$('#add').modal('hide');
 					toastr.success('Thành công!');
-					categoryTable.ajax.reload();
+					productTable.ajax.reload();
 				},
 				error: function (error) {
 					
@@ -124,12 +94,19 @@ function slug(title)
 				data: {
 					name: $('#edit_name').val(),
 					slug: slug($('#edit_name').val()),
+					code: $('#edit_code').val(),
+					description: $('#edit_description').val(),
+					content: CKEDITOR.instances.editor_edit_content.getData(),
+					brand_id: $('#edit_brand_id').val(),
+					category_id: $('#edit_category_id').val(),
+					origin_price: $('#edit_origin_price').val(),
+					sale_price: $('#edit_sale_price').val(),
 				},
 				success: function (response) {
 					//console.log(response);
 					$('#edit').modal('hide');
 					
-					categoryTable.ajax.reload();
+					productTable.ajax.reload();
 					//$('#product-price-'+id).text(response.data.price+" $");
 					toastr.success('Đã lưu thay đổi');
 					//toastr.success('Thành công!');
@@ -141,31 +118,31 @@ function slug(title)
 			})
 		});
 
-		// $(document).on('click','.btn-info',function () {
-		// 	$('#show').modal('show');
-		// 	var url=$(this).data('url');
-		// 	console.log(url);
-		// 	$.ajax({
-		// 		type: 'get',
-		// 		url: url,
+		$(document).on('click','.btn-info',function () {
+			$('#show').modal('show');
+			var url=$(this).data('url');
+			console.log(url);
+			$.ajax({
+				type: 'get',
+				url: url,
 
-		// 		success: function (response) {
-		// 			$("#detail-table-body").empty();
-		// 			response.forEach(function (item, index) {
-		// 				//alert('ok');
-		// 				var status = (item.status == 1) ? "public" : "private";
-		// 				$('#detail-table-body').append('<tr><td>'+(index+1)+'</td><td>'+item.title+'</td><td>'+status+'</td><td>'+item.created_at+'</td><td>'+item.updated_at+'</td></tr>');
-		// 			})
-		// 			/*$('#post-id').text(response.id);
-		// 			$('#post-name').text(response.name);
-		// 			$('#post-price').text(response.price+" $");
-		// 			$('#post-created-at').text(response.created_at);
-		// 			$('#post-updated-at').text(response.updated_at);*/
-		// 		},
-		// 		error: function (error) {
-		// 		}
-		// 	})
-		// })
+				success: function (response) {
+					$("#detail-table-body").empty();
+					// response.forEach(function (item, index) {
+					// 	//alert('ok');
+					// 	var status = (item.status == 1) ? "public" : "private";
+					// 	$('#detail-table-body').append('<tr><td>'+(index+1)+'</td><td>'+item.title+'</td><td>'+status+'</td><td>'+item.created_at+'</td><td>'+item.updated_at+'</td></tr>');
+					// })
+					$('#product_name').text(response.name);
+					$('#product_description').text(response.description);
+					$('#product_origin_price').text(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(response.origin_price) );
+					$('#product_sale_price').text(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(response.sale_price) );
+					$('#product_content').html(response.content);
+				},
+				error: function (error) {
+				}
+			})
+		})
 		
 		$(document).on('click','.btn-warning',function () {
 			$('#edit').modal('show');
@@ -176,10 +153,16 @@ function slug(title)
 				url: url,
 
 				success: function (response) {
-
 					$('#edit_name').val(response.name);
+					$('#edit_code').val(response.code);
+					$('#edit_description').val(response.description);
+					$('#edit_sale_price').val(response.sale_price);
+					$('#edit_origin_price').val(response.origin_price);
+					$('#edit_brand_id').val(response.brand_id);
+					$('#edit_category_id').val(response.category_id);
+					CKEDITOR.instances.editor_edit_content.setData(response.content);
 					//$('#edit-submit').data("id", response.id);
-					$('#edit-submit').attr("data-url", "/admin/categories/"+response.id);
+					$('#edit-submit').attr("data-url", "/admin/products/"+response.id);
 					$('#edit-submit').attr("data-id",response.id);
 				},
 				error: function (error) {
@@ -188,24 +171,46 @@ function slug(title)
 			})
 		})
 
-		$(document).on('click','.btn-danger',function () {
-			/*if (confirm("Bạn có muốn xóa ?")) {
-				var url=$(this).data('url');
-				var id=$(this).data('id');
-				$.ajax({
-					type: 'delete',
-					url: url,
+		$(document).on('click','.btn-detail',function () {
+			$('#detail').modal('show');
+			var url=$(this).attr('data-url');
 
-					success: function (response) {
-						//console.log(response);
-						toastr.error('Đã xóa sản phẩm');
-						$('#category-row-'+id).hide();
-					},
-					error: function (error) {
-						
-					}
-				})
-            }*/
+			console.log(url);
+
+			var productDetailTable = $('#product-detail-table').DataTable({
+		        processing: true,
+		        serverSide: true,
+		        ajax: url,
+		        "destroy": true,
+		        columns: [
+		            { data: 'id', name: 'id' },
+		            { data: 'product_id', name: 'product_details.product_id' },
+		            { data: 'product_name', name: 'product_details.product_name' },
+		            { data: 'size_name', name: 'product_details.size_name' },
+		            { data: 'color_name', name: 'product_details.color_name' },
+		            { data: 'quantity', name: 'product_details.quantity' },
+		            { data: 'action', name: 'action' }
+		        ]
+		    });
+
+			//alert(id);
+			// $.ajax({
+			// 	type: 'get',
+			// 	url: url,
+
+			// 	success: function (response) {;
+			// 		CKEDITOR.instances.editor_edit_content.setData(response.content);
+			// 		//$('#edit-submit').data("id", response.id);
+			// 		$('#edit-submit').attr("data-url", "/admin/products/"+response.id);
+			// 		$('#edit-submit').attr("data-id",response.id);
+			// 	},
+			// 	error: function (error) {
+					
+			// 	}
+			// })
+		})
+
+		$(document).on('click','.btn-danger',function () {
             swal({
 				  title: "Are you sure?",
 				  text: "Once deleted, you will not be able to recover this category!",
@@ -219,7 +224,8 @@ function slug(title)
 				      icon: "success",
 				    });
 					//var id=$(this).data('id');
-					var url=$(this).data('url');
+					var url=$(this).attr('data-url');
+					console.log(url);
 					$.ajax({
 						type: 'delete',
 						url: url,
@@ -227,7 +233,7 @@ function slug(title)
 						success: function (response) {
 							//console.log(response);
 							toastr.error('Đã xóa sản phẩm');
-							categoryTable.ajax.reload();
+							productTable.ajax.reload();
 						},
 						error: function (error) {
 							

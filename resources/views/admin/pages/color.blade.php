@@ -28,7 +28,7 @@
                 </tr>
                 </tfoot>
               </table>
-              <a class="btn btn-success" data-toggle="modal" href='#add' >Thêm màu mới</a> 
+              <a class="btn btn-success" data-toggle="modal" href='#add' >Add more colors</a> 
             </div>
             <!-- /.box-body -->
           </div>

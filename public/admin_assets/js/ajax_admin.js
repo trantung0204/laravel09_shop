@@ -69,14 +69,16 @@ function slug(title)
 }
 
 	$(function () {
-		var url=$('#category-table').attr('data-url');
-	    var categoryTable = $('#category-table').DataTable({
+		var url=$('#admin-table').attr('data-url');
+	    var adminTable = $('#admin-table').DataTable({
 	        processing: true,
 	        serverSide: true,
 	        ajax: url,
 	        columns: [
 	            { data: 'id', name: 'id' },
+	            { data: 'avatar', name: 'name' },
 	            { data: 'name', name: 'name' },
+	            { data: 'email', name: 'email' },
 	            { data: 'created_at', name: 'created_at' },
 	            { data: 'updated_at', name: 'updated_at' },
 	            { data: 'action', name: 'action' }
@@ -100,13 +102,14 @@ function slug(title)
 				url: url,
 				data: {
 					name: $('#name').val(),
+					code: $('#code').val(),
 					slug: slug($('#name').val()),
 				},
 				success: function (response) {
 					console.log("dfdf");
 					$('#add').modal('hide');
 					toastr.success('Thành công!');
-					categoryTable.ajax.reload();
+					adminTable.ajax.reload();
 				},
 				error: function (error) {
 					
@@ -123,13 +126,14 @@ function slug(title)
 				url: url,
 				data: {
 					name: $('#edit_name').val(),
+					code: $('#edit_code').val(),
 					slug: slug($('#edit_name').val()),
 				},
 				success: function (response) {
 					//console.log(response);
 					$('#edit').modal('hide');
 					
-					categoryTable.ajax.reload();
+					adminTable.ajax.reload();
 					//$('#product-price-'+id).text(response.data.price+" $");
 					toastr.success('Đã lưu thay đổi');
 					//toastr.success('Thành công!');
@@ -178,8 +182,9 @@ function slug(title)
 				success: function (response) {
 
 					$('#edit_name').val(response.name);
+					$('#edit_code').val(response.code);
 					//$('#edit-submit').data("id", response.id);
-					$('#edit-submit').attr("data-url", "/admin/categories/"+response.id);
+					$('#edit-submit').attr("data-url", "/admin/colors/"+response.id);
 					$('#edit-submit').attr("data-id",response.id);
 				},
 				error: function (error) {
@@ -227,7 +232,7 @@ function slug(title)
 						success: function (response) {
 							//console.log(response);
 							toastr.error('Đã xóa sản phẩm');
-							categoryTable.ajax.reload();
+							adminTable.ajax.reload();
 						},
 						error: function (error) {
 							

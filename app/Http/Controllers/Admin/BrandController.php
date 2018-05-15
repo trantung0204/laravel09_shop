@@ -24,9 +24,8 @@ class BrandController extends Controller
         return Datatables::of(Brand::all())
         ->addColumn('action', function ($brand) {
             return'
-            <button type="button" class="btn btn-xs btn-info" data-id="'.$brand->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-warning" data-id="'.$brand->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-danger" data-id="'.$brand->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-warning"  data-url="'.route('brands.update', $brand->id).'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-danger" data-id="'.$brand->id.'" data-url="'.route('brands.update', $brand->id).'"><i class="fa fa-trash" aria-hidden="true"></i></button>
             ';
             
         })
@@ -59,7 +58,7 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json(['data' => Brand::storeData($request->only(['name','slug']))], 200);
     }
 
     /**
@@ -70,7 +69,7 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-        //
+        return Brand::find($id);
     }
 
     /**
@@ -93,7 +92,15 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $result = Brand::updateData($id,$request->only(['name','slug']));
+        if($result){
+            $brand= Brand::find($id);
+            return response()->json([
+                'data'=>$brand
+            ], 200);
+        }else{
+            return response()->json( 500);
+        }
     }
 
     /**
@@ -104,6 +111,6 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Brand::del($id);
     }
 }

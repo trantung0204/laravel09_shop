@@ -24,9 +24,8 @@ class CategoryController extends Controller
         return Datatables::of(Category::all())
         ->addColumn('action', function ($category) {
             return'
-            <button type="button" class="btn btn-xs btn-info" data-id="'.$category->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-warning" data-id="'.$category->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-danger" data-id="'.$category->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-warning" data-url="'.route('categories.update', $category->id).'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-danger" data-id="'.$category->id.'" data-url="'.route('categories.destroy', $category->id).'"><i class="fa fa-trash" aria-hidden="true"></i></button>
             ';
             
         })
@@ -59,7 +58,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json(['data' => Category::storeData($request->only(['name','slug']))], 200);
     }
 
     /**
@@ -70,7 +69,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        return Category::find($id);
     }
 
     /**
@@ -93,7 +92,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $result = Category::updateData($id,$request->only(['name','slug']));
+        if($result){
+            $category= Category::find($id);
+            return response()->json([
+                'data'=>$category
+            ], 200);
+        }else{
+            return response()->json( 500);
+        }
     }
 
     /**
@@ -104,6 +111,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::del($id);
     }
 }

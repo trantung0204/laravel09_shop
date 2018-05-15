@@ -8,4 +8,9 @@ class ProductDetail extends Model
 {
     protected $table='product_details';
     protected $fillable=['product_id','color_id','size_id','quantity'];
+
+    // public static function del($code)
+    // {
+    // 	ProductDetail::where('product_id','=',$code)->get()->delete();
+    // }
 }

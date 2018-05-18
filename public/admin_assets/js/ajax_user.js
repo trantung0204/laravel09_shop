@@ -198,7 +198,7 @@ function slug(title)
 						}
 					})
 				  } else {
-				    swal("Your imaginary file is safe!");
+				  	
 				  }
 				});
 		})

@@ -117,11 +117,11 @@
           <div class="row">
             <div class="form-group col-sm-6">
               <label for="edit_origin_price">Origin Price</label>
-              <input name="edit_origin_price" type="number" id="edit_origin_price" class="form-control" placeholder="Origin Price VNĐ" required="true">
+              <input name="edit_origin_price" type="number" step="1" id="edit_origin_price" class="form-control" placeholder="Origin Price USD" required="true">
             </div>
             <div class="form-group col-sm-6">
               <label for="edit_sale_price">Sale Price</label>
-              <input name="edit_sale_price" type="number" id="edit_sale_price" class="form-control" placeholder="Sale Price VNĐ" required="true">
+              <input name="edit_sale_price" type="number" step="1" id="edit_sale_price" class="form-control" placeholder="Sale Price USD" required="true">
             </div>            
           </div>
         
@@ -170,6 +170,73 @@
             </tr>
             </tfoot>
           </table>
+          <form action="" method="POST" class="form-inline" role="form">
+          {{csrf_field()}}<!-- sinh token -->
+            <label style="margin-right: 40px;" >Add new items: </label>
+            <div class="form-group">
+              <label for="add_color_id">Color</label>
+              <select name="add_color_id" id="add_color_id" class="form-control" required="required">
+                @foreach ($colors as $color)
+                  <option value="{{$color->id}}">{{$color->name}}</option>
+                @endforeach
+              </select>
+            </div>
+            <input type="hidden" name="add_code" id="add_code" value="">
+            <div class="form-group">
+              <label for="add_size_id">Size</label>
+              <select name="add_size_id" id="add_size_id" class="form-control" required="required">
+                @foreach ($sizes as $size)
+                  <option value="{{$size->id}}">{{$size->size}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="add_quantity">Quantity</label>
+              <input type="number" name="add_quantity" id="add_quantity" class="form-control" value="" required="required" title="">
+            </div>
+          
+            
+          
+            <button type="button" class="btn btn-primary" id="btn-add-detail">Add</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="modal fade" id="upload">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="title-detail-image"></h4>
+        </div>
+        <div class="modal-body">
+          <form id="images-form" action="" method="POST" class="form-inline" data-url='{{ route('imagesUploadPost') }}' role="form" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="col-sm-4 form-group">
+              <label for="choose_color">Choose Color</label>
+              <select name="choose_color" id="choose_color" class="form-control" required="required">
+                
+                  
+                
+              </select>
+            </div>
+            <input type="hidden" name="image_product_id" id="image_product_id" value="">
+            <div class="col-sm-6 form-group">
+              <label for="">Choose images</label>
+              <input  type="file" id="uploadFile" name="uploadFile[]" multiple class="form-control">
+            </div>
+          
+            
+          
+            <button type="submit" class="btn btn-primary" id="upload_submit" name='submitImage'>Upload</button>
+          </form>
+          <div style="min-height: 300px; margin-top: 30px;" class="col-sm-12" id="image_preview"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>

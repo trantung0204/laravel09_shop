@@ -4,18 +4,18 @@
     {{csrf_field()}}
     <legend>Add Product</legend>
   
-    <div class="col-sm-6 col-xm-12">
+    <div class="col-sm-5 col-xm-12">
       <div class="form-group">
         <label for="name">Product Name</label>
         <input name="name" type="text" id="name" class="form-control" placeholder="Product name" required="true">
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea name="description" id="description" class="form-control" rows="3" required="required"></textarea>
+        <textarea name="description" id="description" class="form-control" rows="3" placeholder="Product description" required="required"></textarea>
       </div>
       <div class="form-group">
         <label for="content">Content</label>
-        <textarea name="content" id="editor_content"></textarea>
+        <textarea name="content" id="editor_content" placeholder="Product Content"></textarea>
       </div>
       <div class="form-group">
 
@@ -37,7 +37,7 @@
         </select>
       </div>
     </div>
-    <div class="col-sm-6 col-xm-12">
+    <div class="col-sm-7 col-xm-12">
       <label >Quantity - Color - Size</label>
       <table class="table table-hover thead-light " >
         <thead>
@@ -62,11 +62,11 @@
       </table>
       <div class="form-group col-sm-6">
         <label for="origin_price">Origin Price</label>
-        <input name="origin_price" type="number" id="origin_price" class="form-control" placeholder="Origin Price VNĐ" required="true">
+        <input name="origin_price" type="number" id="origin_price" step="1" class="form-control" placeholder="Origin Price VNĐ" required="true">
       </div>
       <div class="form-group col-sm-6">
         <label for="sale_price">Sale Price</label>
-        <input name="sale_price" type="number" id="sale_price" class="form-control" placeholder="Sale Price VNĐ" required="true">
+        <input name="sale_price" type="number" id="sale_price" step="1" class="form-control" placeholder="Sale Price VNĐ" required="true">
       </div>
     </div>
   

@@ -15,7 +15,7 @@ class Image extends Model
      */
     public static function del($id)
     {
-    	Color::find($id)->delete();
+    	Image::find($id)->delete();
     }
     /**
      * Lưu dữ liệu vào database
@@ -24,11 +24,11 @@ class Image extends Model
      */
     public static function storeData($data)
     {
-    	return Color::create($data);
+    	return Image::create($data);
     }
     public static function updateData($id,$data)
     {
-    	$color= Color::find($id);
+    	$color= Image::find($id);
     	$color->update($data);
     	return $color;
     }

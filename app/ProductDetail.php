@@ -13,4 +13,12 @@ class ProductDetail extends Model
     // {
     // 	ProductDetail::where('product_id','=',$code)->get()->delete();
     // }
+    public static function del($id)
+    {
+    	ProductDetail::find($id)->delete();
+    }
+    public static function storeData($data)
+    {
+        return ProductDetail::create($data);
+    }
 }

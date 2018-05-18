@@ -13,6 +13,8 @@ use App\ProductDetail;
 use App\Image;
 use \DB;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProductController extends Controller
 {
@@ -25,7 +27,9 @@ class ProductController extends Controller
     {
         $brands=Brand::all();
         $categories=Category::all();
-        return view('admin.pages.dashboard',compact('brands','categories'));
+        $colors=Color::all();
+        $sizes=Size::all();
+        return view('admin.pages.dashboard',compact('brands','categories','colors','sizes'));
     }
     public function addForm()
     {
@@ -46,10 +50,11 @@ class ProductController extends Controller
         return Datatables::of($products)
         ->addColumn('action', function ($product) {
             return'
-            <button type="button" class="btn btn-xs btn-default btn-detail" data-url="'.route('getProductDetails', $product->code).'" data-code="'.$product->code.'"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-info" data-url="'.route('products.show', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-warning" data-url="'.route('products.show', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-danger" data-url="'.route('products.destroy', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-default btn-detail" data-url="'.route('getProductDetails', $product->code).'" data-code="'.$product->code.'" data-url-add="'.route('addDetail').'"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-info btn-view" data-url="'.route('products.show', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-warning btn-edit" data-url="'.route('products.show', $product->id).'"  data-id="'.$product->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-danger btn-del" data-url="'.route('products.destroy', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-success btn-image"  data-url="'.route('listColors', $product->code).'" data-id="'.$product->id.'" data-name="'.$product->name.'"><i class="fa fa-upload" aria-hidden="true"></i> Images</button>
             ';
             
         })
@@ -59,13 +64,13 @@ class ProductController extends Controller
         // ->editColumn('image_link', '<img class="img-responsive center-block" style="width:70px;" src="{{$images}}"/>')
         ->addColumn('image_link', function (Product $product) {
             if(isset($product->images) && isset($product->images[0])){
-                return '<img class="img-responsive center-block" style="width:70px;" src="'.$product->images[0]->link.'"/>';
+                return '<img class="img-responsive center-block" style="width:70px;" src="'.url(Storage::url($product->images[0]->link)).'"/>';
             }else{
                 return '<img class="img-responsive center-block" style="width:70px;" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"/>';
             }
         })
-        ->editColumn('origin_price', '{{$origin_price}} VNĐ')
-        ->editColumn('sale_price', '{{$sale_price}} VNĐ')
+        ->editColumn('origin_price', '{{$origin_price}} USD')
+        ->editColumn('sale_price', '{{$sale_price}} USD')
         //->editColumn('brand_id', 'tung{{$category_id}}')
         //->editColumn('category_id', Category::where('id', '=',$category_id)->first()->name)
         ->setRowId('product-row-{{$id}}')
@@ -88,9 +93,9 @@ class ProductController extends Controller
         return Datatables::of($productDetails)
         ->addColumn('action', function ($productDetail) {
             return'
-            <button type="button" class="btn btn-xs btn-info" id="plus" data-url="" data-id="'.$productDetail->id.'"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-info" id="sub" data-url="" data-id="'.$productDetail->id.'"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-danger" data-url="" data-id="'.$productDetail->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-info btn-quantity" id="plus" data-url="'.route('quantityIncrement', [$productDetail->id,1]).'" data-id="'.$productDetail->id.'"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-info btn-quantity" id="sub" data-url="'.route('quantityIncrement', [$productDetail->id,0]).'" data-id="'.$productDetail->id.'"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-xs btn-danger btn-del-detail" data-url="'.route('delProductDetail', $productDetail->id).'" data-id="'.$productDetail->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
             ';
             
         })
@@ -100,23 +105,52 @@ class ProductController extends Controller
         ->rawColumns(['color_name','action'])
         ->make(true);
     }
+    // public function getColor($code)
+    // {
+    //     //return Datatables::of(Product::query())->make(true);
+    //     //
+    //     $productColors = DB::table('product_details')
+    //                         ->where('product_id', '=', $code)
+    //                         ->join('colors', 'product_details.color_id', '=', 'colors.id')
+    //                         ->join('products', 'product_details.product_id', '=', 'products.code')
+    //                         ->select('product_details.code','products.name as product_name', 'colors.name as color_name','colors.code as color_code')
+    //                         ->groupBy('color_name')
+    //                         ->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //     return Datatables::of($productColors)
+    //     ->addColumn('action', function ($productColors) {
+    //         return'
+    //         <button type="button" class="btn btn-xs btn-info btn-quantity" data-url="" data-id="'.$productColors->id.'"><i class="fa fa-file-image-o" aria-hidden="true"></i></button>
+    //         ';
+            
+    //     })
+    //     ->editColumn('color_name', '<i style="color:{{$color_code}};text-shadow: 1px 1px 1px #000000;" class="fa fa-circle" aria-hidden="true"></i>  {{$color_name}}  ')
+    //     ->setRowId('product-row-{{$id}}')
+    //     ->setRowClass('table-row')
+    //     ->rawColumns(['color_name','action'])
+    //     ->make(true);
+    // }
+    public function quantityIncrement($id,$i)
+    {
+        // DB::table('product_details')
+        // ->where('id', $id)
+        // ->update([
+        //    'quantity' => DB::raw('quantity + 1')
+        // ]);
+        if ($i==1) {
+            DB::table('product_details')->where('id', $id)->increment('quantity');
+        }else{
+            if (DB::table('product_details')->where('id', $id)->first()->quantity<=1) {
+                ProductDetail::del($id);
+            }else{
+                DB::table('product_details')->where('id', $id)->decrement('quantity');
+            }
+        }
+    }
     public function create()
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $productData=array();
@@ -151,35 +185,11 @@ class ProductController extends Controller
         //dd($numOfColor);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return Product::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $result = Product::updateData($id,$request->only(['name','slug','code','description','content','origin_price','sale_price','brand_id','category_id',]));
@@ -193,17 +203,74 @@ class ProductController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $x= DB::table('products')->where('id','=',$id)->first();
         DB::table('product_details')->where('product_id', '=', $x->code)->delete();
         //ProductDetail::del($x->code);
         Product::del($id);
+    }
+    public function delProductDetail($id)
+    {
+        ProductDetail::del($id);
+    }
+    public function addDetail(Request $request)
+    {
+        $details = DB::table('product_details')->where('product_id', $request->product_id)->where('color_id', $request->color_id)->where('size_id', $request->size_id)->first();
+
+        //return response()->json(['data' => $details], 200);
+
+
+        if (empty($details)) {
+            return response()->json(['data' => ProductDetail::storeData($request->only(['product_id','color_id','size_id','quantity']))], 200);
+        }else{
+            DB::table('product_details')->where('product_id', $request->product_id)->where('color_id', $request->color_id)->where('size_id', $request->size_id)->increment('quantity',$request->quantity);
+        }
+    }
+    public function getColors($code)
+    {
+        $colors= DB::table('product_details')->where('product_id', '=', $code)
+                                    ->join('colors', 'product_details.color_id', '=', 'colors.id')
+                                    ->select('product_details.color_id as color_id','colors.name as color_name')
+                                    ->distinct('color_id')
+                                    ->get();
+        return response()->json([
+                'data'=>$colors
+            ], 200);
+    }
+
+    // public function imagesUpload()
+    // {
+    //     return view('imagesUpload');
+    // }
+
+    // public function imagesUploadPost(Request $request)
+    // {
+    //     request()->validate([
+    //         'uploadFile' => 'required',
+    //     ]);
+
+    //     foreach ($request->file('uploadFile') as $key => $value) {
+    //         $imageName = time(). $key . '.' . $value->getClientOriginalExtension();
+    //         $value->move(public_path('images'), $imageName);
+    //     }
+    //     return response()->json(['success'=>'Images Uploaded Successfully.']);
+    // }
+     public function imagesUploadPost(Request $request)
+    {      
+
+        $data = array();
+        $images=array();
+        if($files=$request->file('image')){
+            foreach($files as $key =>$file){
+                $temp = [];
+                // $temp['link'] = $file->store('images');
+                $temp['link'] = Storage::disk('local')->put('public/images', $file);
+                $temp['color_id'] = $request['color_id'];
+                $temp['product_id'] = $request['product_id'];
+                Image::storeData($temp);
+            }
+        }
+        return response()->json(['data' => $images], 200);
     }
 }

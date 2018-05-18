@@ -34,6 +34,7 @@ function slug(title)
 }
 
 	$(function () {
+		var productDetailTable=null;
 		var url=$('#product-table').attr('data-url');
 	    var productTable = $('#product-table').DataTable({
 	        processing: true,
@@ -118,7 +119,7 @@ function slug(title)
 			})
 		});
 
-		$(document).on('click','.btn-info',function () {
+		$(document).on('click','.btn-view',function () {
 			$('#show').modal('show');
 			var url=$(this).data('url');
 			console.log(url);
@@ -135,8 +136,8 @@ function slug(title)
 					// })
 					$('#product_name').text(response.name);
 					$('#product_description').text(response.description);
-					$('#product_origin_price').text(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(response.origin_price) );
-					$('#product_sale_price').text(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(response.sale_price) );
+					$('#product_origin_price').text(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'USD' }).format(response.origin_price) );
+					$('#product_sale_price').text(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'USD' }).format(response.sale_price) );
 					$('#product_content').html(response.content);
 				},
 				error: function (error) {
@@ -144,7 +145,7 @@ function slug(title)
 			})
 		})
 		
-		$(document).on('click','.btn-warning',function () {
+		$(document).on('click','.btn-edit',function () {
 			$('#edit').modal('show');
 			var url=$(this).data('url');
 			//alert(id);
@@ -174,10 +175,14 @@ function slug(title)
 		$(document).on('click','.btn-detail',function () {
 			$('#detail').modal('show');
 			var url=$(this).attr('data-url');
+			var urlAdd=$(this).attr('data-url-add');
+			var code=$(this).attr('data-code');
+			$('#add_code').val(code);
+			$('#btn-add-detail').attr('data-url',urlAdd);
 
 			console.log(url);
 
-			var productDetailTable = $('#product-detail-table').DataTable({
+			productDetailTable = $('#product-detail-table').DataTable({
 		        processing: true,
 		        serverSide: true,
 		        ajax: url,
@@ -192,25 +197,9 @@ function slug(title)
 		            { data: 'action', name: 'action' }
 		        ]
 		    });
-
-			//alert(id);
-			// $.ajax({
-			// 	type: 'get',
-			// 	url: url,
-
-			// 	success: function (response) {;
-			// 		CKEDITOR.instances.editor_edit_content.setData(response.content);
-			// 		//$('#edit-submit').data("id", response.id);
-			// 		$('#edit-submit').attr("data-url", "/admin/products/"+response.id);
-			// 		$('#edit-submit').attr("data-id",response.id);
-			// 	},
-			// 	error: function (error) {
-					
-			// 	}
-			// })
 		})
 
-		$(document).on('click','.btn-danger',function () {
+		$(document).on('click','.btn-del',function () {
             swal({
 				  title: "Are you sure?",
 				  text: "Once deleted, you will not be able to recover this category!",
@@ -240,8 +229,169 @@ function slug(title)
 						}
 					})
 				  } else {
-				    swal("Your imaginary file is safe!");
+				  	
 				  }
 				});
 		})
+
+		$(document).on('click','.btn-quantity',function () {
+			//$('#show').modal('show');
+			var url=$(this).attr('data-url');
+			console.log(url);
+			$.ajax({
+				type: 'get',
+				url: url,
+
+				success: function (response) {
+					productDetailTable.ajax.reload();
+				},
+				error: function (error) {
+				}
+			})
+		})
+		$(document).on('click','#btn-add-detail',function (e) {
+			e.preventDefault();
+			//$('#show').modal('show');
+			var url=$(this).attr('data-url');
+			console.log(url);
+			$.ajax({
+				type: 'post',
+				url: url,
+				data: {
+					product_id: $('#add_code').val(),
+					color_id: $('#add_color_id').val(),
+					size_id: $('#add_size_id').val(),
+					quantity: $('#add_quantity').val(),
+				},	
+				success: function (response) {
+					productDetailTable.ajax.reload();
+				},
+				error: function (error) {
+				}
+			})
+		})
+		$(document).on('click','.btn-del-detail',function () {
+			
+            swal({
+				  title: "Are you sure?",
+				  text: "Once deleted, you will not be able to recover this category!",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    swal("Poof! Your category has been deleted!", {
+				      icon: "success",
+				    });
+						var url=$(this).attr('data-url');
+						console.log(url);
+						$.ajax({
+							type: 'delete',
+							url: url,
+
+							success: function (response) {
+								productDetailTable.ajax.reload();
+							},
+							error: function (error) {
+							}
+						})
+				  } else {
+
+				  }
+				});
+
+		})
+
+		$(document).on('click','.btn-image',function () {
+			$('#upload').modal('show');
+			$('#image_preview').html("");
+			var url=$(this).attr('data-url');
+			var id=$(this).attr('data-id');
+			var name=$(this).attr('data-name');
+
+
+			$('#image_product_id').val(id);
+			$('#title-detail-image').text(name);
+
+			//console.log(url);
+			$.ajax({
+				type: 'get',
+				url: url,
+				success: function (response) {
+					// $('#choose_color').append('<option value="'+ response.id +'">'+ response.name +'</option>');
+					console.log(response);
+					$("#choose_color").empty();
+
+					response.data.map(function(color, index){
+						$('#choose_color').append('<option value="'+ color.color_id +'">'+ color.color_name +'</option>');
+					})
+				},
+				error: function (error) {
+				}
+			})
+		})
+		// $("#uploadFile").change(function(){
+
+	 //    	$('#image_preview').html("");
+	 //    	 	var total_file=document.getElementById("uploadFile").files.length;
+	 //    	for(var i=0;i<total_file;i++)
+	 //    	{
+	 //    		$('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+	 //    	}
+		// });
+		$("#uploadFile").change(function(){
+			$('#image_preview').html("");
+			var total_file=document.getElementById("uploadFile").files.length;
+			for(var i=0;i<total_file;i++)
+			{
+				$('#image_preview').append("<img style='height:100px; display:inline-block; margin-right: 15px;' class='img-responsive img-rounded' src='"+URL.createObjectURL(event.target.files[i])+"'>");
+			}
+		});
+		$('#images-form').on('submit',function(e) {
+			e.preventDefault();
+			var newPost = new FormData();
+			var files = document.getElementById('uploadFile').files;	
+			for (var i = 0; i < files.length; i++) {
+				newPost.append('image[]',files[i]);
+			}			 
+			//newPost.append('name',$('#name').val());
+			newPost.append('color_id',$('#choose_color').val());
+			newPost.append('product_id',$('#image_product_id').val());
+			var url=$('#images-form').attr('data-url');
+			console.log(url);
+			$.ajax({				
+				type: 'post',
+				url: url,
+				data: newPost,
+				dataType:'json',
+				async:false,
+				processData: false,
+				contentType: false,
+				success: function (response){
+					console.log(response);
+					$('#upload').modal('hide');
+					//$('#name').text(" ");
+					toastr.success('Images were saved!');					
+					// var html=
+					// '<tr id="tr-'+response.id+'>"'+
+					// '<td>'+response.id+'</td>'+
+					// '<td>'+response.id+'</td>'+
+					// '<td>'+response.name+'</td>'+
+					// '<td>'+response.image+'</td>'+
+					// '<td>'+
+					// '<a edit="'+ response.id +'" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-edit"></i></a>'+
+					// '<a delete="'+ response.id +'" style="margin-left: 3px" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>'+
+					// '</td>'+
+					// '</tr>';
+
+					// $('#images').prepend(html);
+					 productTable.ajax.reload();
+				},
+				error: function (error) {
+					//500
+				}
+			})
+		});
+
 	});

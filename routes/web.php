@@ -22,6 +22,8 @@ Route::prefix('admin')->group(function(){
 		Route::post('/products/addImage', 'Admin\ProductController@imagesUploadPost')->name('imagesUploadPost');
 		Route::get('/products/{products}/{i}', 'Admin\ProductController@quantityIncrement')->name('quantityIncrement');
 		Route::get('/listColors/{code}', 'Admin\ProductController@getColors')->name('listColors');
+		Route::get('/listImages/{id}', 'Admin\ProductController@getImages')->name('listImages');
+		Route::get('/delImages/{id}', 'Admin\ProductController@delImages')->name('delImages');
 		
 		Route::resource('categories','Admin\CategoryController');
 		Route::get('/listCategories', 'Admin\CategoryController@anyData')->name('getCategories');

@@ -236,7 +236,7 @@
           
             <button type="submit" class="btn btn-primary" id="upload_submit" name='submitImage'>Upload</button>
           </form>
-          <div style="min-height: 300px; margin-top: 30px;" class="col-sm-12" id="image_preview"></div>
+          <div class="col-sm-12" id="image_preview"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>
@@ -271,6 +271,37 @@
   }
   .table-row td{
     vertical-align: middle !important;
+  }
+  #image_preview{
+    margin-top: 30px;
+  }
+  .image-append{
+     height:100px; 
+     display:inline-block; 
+     opacity: 0.8;
+     transition: 0.2s;
+  }
+  .image-append:hover{
+    opacity: 1;
+  }
+  .image-div{
+    position: relative;
+    display: inline-block;
+    box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
+    margin-right: 15px; 
+    margin-bottom: 15px;
+    border-radius: 6px;
+  }
+  .btn-del-image{
+    position: absolute;
+    transform: translate(50%, 50%);
+    top: -20px ;
+    right: 0px ;
+    color: #D73925;
+    font-size: 20px;
+    cursor: pointer;
+    background: white;
+    border-radius: 50%;
   }
 </style>
 @endsection

@@ -54,7 +54,7 @@ class ProductController extends Controller
             <button type="button" class="btn btn-xs btn-info btn-view" data-url="'.route('products.show', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-xs btn-warning btn-edit" data-url="'.route('products.show', $product->id).'"  data-id="'.$product->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-xs btn-danger btn-del" data-url="'.route('products.destroy', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-success btn-image"  data-url="'.route('listColors', $product->code).'" data-id="'.$product->id.'" data-name="'.$product->name.'"><i class="fa fa-upload" aria-hidden="true"></i> Images</button>
+            <button type="button" class="btn btn-xs btn-success btn-image"  data-url="'.route('listColors', $product->code).'" data-url-image="'.route('listImages', $product->id).'" data-id="'.$product->id.'" data-name="'.$product->name.'"><i class="fa fa-upload" aria-hidden="true"></i> Images</button>
             ';
             
         })
@@ -272,5 +272,18 @@ class ProductController extends Controller
             }
         }
         return response()->json(['data' => $images], 200);
+    }
+    public function getImages($id)
+    {
+        $images= DB::table('images')->where('product_id', '=', $id)->get();
+        return response()->json([
+                'data'=>$images
+            ], 200);
+    }
+    public function delImages($id)
+    {
+        $link=DB::table('images')->where('id', '=', $id)->first()->link;
+        DB::table('images')->where('id', '=', $id)->delete();
+        Storage::disk('local')->delete($link);
     }
 }

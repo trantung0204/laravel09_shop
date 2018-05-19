@@ -105,31 +105,7 @@ class ProductController extends Controller
         ->rawColumns(['color_name','action'])
         ->make(true);
     }
-    // public function getColor($code)
-    // {
-    //     //return Datatables::of(Product::query())->make(true);
-    //     //
-    //     $productColors = DB::table('product_details')
-    //                         ->where('product_id', '=', $code)
-    //                         ->join('colors', 'product_details.color_id', '=', 'colors.id')
-    //                         ->join('products', 'product_details.product_id', '=', 'products.code')
-    //                         ->select('product_details.code','products.name as product_name', 'colors.name as color_name','colors.code as color_code')
-    //                         ->groupBy('color_name')
-    //                         ->get();
-
-    //     return Datatables::of($productColors)
-    //     ->addColumn('action', function ($productColors) {
-    //         return'
-    //         <button type="button" class="btn btn-xs btn-info btn-quantity" data-url="" data-id="'.$productColors->id.'"><i class="fa fa-file-image-o" aria-hidden="true"></i></button>
-    //         ';
-            
-    //     })
-    //     ->editColumn('color_name', '<i style="color:{{$color_code}};text-shadow: 1px 1px 1px #000000;" class="fa fa-circle" aria-hidden="true"></i>  {{$color_name}}  ')
-    //     ->setRowId('product-row-{{$id}}')
-    //     ->setRowClass('table-row')
-    //     ->rawColumns(['color_name','action'])
-    //     ->make(true);
-    // }
+    
     public function quantityIncrement($id,$i)
     {
         // DB::table('product_details')

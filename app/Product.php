@@ -46,7 +46,7 @@ class Product extends Model
     }
     public function brand()
     {
-    	return $this->belongsTo('App\Brand','id','brand_id');
+    	return $this->belongsTo('App\Brand','brand_id','id');
     }
     public function images()
     {

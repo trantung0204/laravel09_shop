@@ -24,6 +24,7 @@ Route::prefix('admin')->group(function(){
 		Route::get('/listColors/{code}', 'Admin\ProductController@getColors')->name('listColors');
 		Route::get('/listImages/{id}', 'Admin\ProductController@getImages')->name('listImages');
 		Route::get('/delImages/{id}', 'Admin\ProductController@delImages')->name('delImages');
+		Route::get('/addProduct', 'Admin\ProductController@addForm')->name('addProduct');
 		
 		Route::resource('categories','Admin\CategoryController');
 		Route::get('/listCategories', 'Admin\CategoryController@anyData')->name('getCategories');
@@ -35,7 +36,8 @@ Route::prefix('admin')->group(function(){
 		Route::get('/listColors', 'Admin\ColorController@anyData')->name('getColors');
 		Route::resource('admins','Admin\AdminController');
 		Route::get('/listAdmins', 'Admin\AdminController@anyData')->name('getAdmins');
-		Route::get('/addProduct', 'Admin\ProductController@addForm')->name('addProduct');
+		Route::post('admins/updateAvatar/{i}', 'Admin\AdminController@updateAvatar')->name('admins.updateAvatar');
+
 	});
     Route::get('login', 'AdminAuth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('login', 'AdminAuth\AdminLoginController@login')->name('admin.auth');
@@ -57,6 +59,8 @@ Route::prefix('shop')->group(function(){
 		
 	});
 	Route::get('/home', 'Shop\ShopController@index')->name('shop.index');
+	Route::get('/category', 'Shop\ShopController@categoryList')->name('shop.categoryList');
+	Route::get('/product', 'Shop\ShopController@product')->name('shop.product');
 });
 
 Auth::routes();

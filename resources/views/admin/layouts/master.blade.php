@@ -275,8 +275,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="
                 @if (!empty(Auth::guard('admin')->user()->avatar))
-                  {{ dd("Dfdf")}}
-                  {{ Auth::guard('admin')->user()->avatar}}
+                  
+                  {{ url(\Storage::url(Auth::guard('admin')->user()->avatar)) }}
                 @else
                   
                   {{ asset('admin_assets/dist/img/default-avatar.jpg') }}
@@ -291,7 +291,7 @@
               <li class="user-header">
                 <img src="
                 @if (!empty(Auth::guard('admin')->user()->avatar))
-                  {{ Auth::guard('admin')->user()->avatar}}
+                  {{ url(\Storage::url(Auth::guard('admin')->user()->avatar)) }}
                 @else
                   {{ asset('admin_assets/dist/img/default-avatar.jpg') }}
                 @endif" class="img-circle" alt="User Image">
@@ -348,7 +348,7 @@
         <div class="pull-left image">
           <img src="
                 @if (!empty(Auth::guard('admin')->user()->avatar))
-                  {{ Auth::guard('admin')->user()->avatar}}
+                  {{ url(\Storage::url(Auth::guard('admin')->user()->avatar)) }}
                 @else
                   {{ asset('admin_assets/dist/img/default-avatar.jpg') }}
                 @endif" class="img-circle" alt="User Image">

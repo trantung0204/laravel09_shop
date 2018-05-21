@@ -306,6 +306,7 @@ $(function () {
 	$(document).on('click','.btn-image',function () {
 		$('#upload').modal('show');
 		$('#image_preview').html("");
+		$('#image_prepare').html("");
 		document.getElementById("images-form").reset();
 		var url=$(this).attr('data-url');
 		var urlImage=$(this).attr('data-url-image');
@@ -353,11 +354,11 @@ $(function () {
 	})
 
 	$("#uploadFile").change(function(){
-		$('#image_preview').html("");
+		//$('#image_preview').html("");
 		var total_file=document.getElementById("uploadFile").files.length;
 		for(var i=0;i<total_file;i++)
 		{
-			$('#image_preview').append("<div class='image-div'><img class='img-responsive img-rounded image-append' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
+			$('#image_prepare').append("<div class='image-div'><img class='img-responsive img-rounded image-append' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
 		}
 	});
 
@@ -390,6 +391,7 @@ $(function () {
 					success: function (response) {
 						// $('#choose_color').append('<option value="'+ response.id +'">'+ response.name +'</option>');
 						//console.log(response);
+						$("#image_prepare").html("");
 						$("#image_preview").html("");
 
 						response.data.map(function(image, index){

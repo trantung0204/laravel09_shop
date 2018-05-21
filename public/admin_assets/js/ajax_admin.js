@@ -243,4 +243,55 @@ function slug(title)
 				  }
 				});
 		})
+
+		$(document).on('click','.btn-avatar',function () {
+			$('#upload').modal('show');
+			$('#image_preview').html("");
+			document.getElementById("images-form").reset();
+			var url=$(this).attr('data-url');
+			var id=$(this).attr('data-id');
+
+
+			$('#images-form').attr('data-url',url);
+			$('#images-form').attr('data-id',id);
+
+		})
+		$("#uploadFile").change(function(){
+			$('#image_preview').html("");
+			var total_file=document.getElementById("uploadFile").files.length;
+			for(var i=0;i<total_file;i++)
+			{
+				$('#image_preview').append("<div class='image-div'><img class='img-responsive img-rounded image-append' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
+			}
+		});
+
+		$('#images-form').on('submit',function(e) {
+			e.preventDefault();
+			var newPost = new FormData();
+			//var urlImage=$("#image_preview").attr('data-url-image');
+			var file = document.getElementById('uploadFile').files;	
+			newPost.append('image',file[0]);		 
+			var url=$('#images-form').attr('data-url');
+			console.log(url);
+			$.ajax({				
+				type: 'post',
+				url: url,
+				data: newPost,
+				dataType:'json',
+				async:false,
+				processData: false,
+				contentType: false,
+				success: function (response){
+					toastr.success('Images were saved!');
+					console.log('blabla');
+					$('#upload').modal('hide');
+					adminTable.ajax.reload();
+					
+					$('.admin-avatar').attr('src')
+				},
+				error: function (error) {
+					//500
+				}
+			})
+		});
 	});

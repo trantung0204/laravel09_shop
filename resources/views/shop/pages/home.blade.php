@@ -4,6 +4,7 @@
 		<!-- Basic -->
 		<meta charset="utf-8">
 		<title>SneakerHead Shop</title>
+  		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="keywords" content="HTML5 Template" />
 		<meta name="description" content="YOURStore - Responsive HTML5 Template">
 		<meta name="author" content="etheme.com">
@@ -22,6 +23,7 @@
 		<link rel="stylesheet" href="{{ asset('shop_assets/') }}/css/style-layout11.css">
 		<!-- Icon Fonts  -->
 		<link rel="stylesheet" href="{{ asset('shop_assets/') }}/font/style.css">
+  		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 		<!-- Head Libs -->	
 		<!-- Modernizr -->
 		<script src="{{ asset('shop_assets/') }}/external/modernizr/modernizr.js"></script>
@@ -428,7 +430,7 @@
 					<div class="row">
 						<div class="col-xl-3">
 							<!-- logo start --> 
-							<a href="{{ asset('shop_assets/') }}/index-11.html"><img class="logo replace-2x img-responsive" src="{{ asset('shop_assets/') }}/images/custom/layout11/logo.png" alt=""/></a> 
+							<a href="{{ asset('shop/home') }}"><img class="logo replace-2x img-responsive" src="{{ asset('shop_assets/') }}/images/custom/layout11/logo.png" alt=""/></a> 
 							<!-- logo end --> 
 						</div>
 						<div class="col-xl-7 col-lg-push-12 text-center">							
@@ -452,373 +454,12 @@
 											</div>
 										</div>
 										<!-- //end Mobile menu Button -->
-										<ul class="nav navbar-nav">
-											<li class="dl-close"><a href="{{ asset('shop_assets/') }}/#"><span class="icon icon-close"></span>close</a></li>										
-											<li class="dropdown dropdown-mega-menu">											
-												<a href="{{ asset('shop_assets/') }}/index.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">LAYOUT</span></a>
-												<ul class="dropdown-menu megamenu image-links-layout" role="menu">												
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-1.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 1 (Default)</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index-02.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-2.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 2</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index-03.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-3.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 3</span>
-														</a>
-														</span>
-													</li>												
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index-04.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-4.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 4</span>
-														</a>
-														</span>
-													</li>												
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index-05.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-5.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 5</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index-06.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-6.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 6</span>
-														</a>
-														</span>											
-													</li>												
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index-07.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-7.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 7</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index-08.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-8.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 8</span>
-														</a>
-														</span>
-													</li>												
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index-09.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-9.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 9</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index-10.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-10.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 10</span>
-														</a>
-														</span>
-													</li>												
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index-11.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-11.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 11</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/index-12.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/layout-img-12.jpg" alt=""/><span class="btn btn--ys btn--lg">LAUNCH</span></span>
-														<span class="figcaption">Home page - Layout 12</span>
-														</a>
-														</span>
-													</li>
-												</ul>
-											</li>											
-											<li class="dropdown dropdown-mega-menu">
-												<span class="dropdown-toggle extra-arrow"></span>
-												<a href="{{ asset('shop_assets/') }}/listing-layout11.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">LISTING</span></a>
-												<ul class="dropdown-menu megamenu image-links" role="menu">
-													<li class="dl-back"><a href="{{ asset('shop_assets/') }}/#"><span class="icon icon-chevron_left"></span>back</a></li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/listing-layout11.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/listing-img-1.png" alt=""/></span>
-														<span class="figcaption text-uppercase">left column</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/listing-left-right-col.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/listing-img-2.png" alt=""/></span>
-														<span class="figcaption text-uppercase">left, right column</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/listing-col-right_03.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/listing-img-3.png" alt=""/></span>
-														<span class="figcaption text-uppercase">right column</span>
-														</a>
-														</span>											
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/listing-without-col-04.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/listing-img-4.png" alt=""/></span>
-														<span class="figcaption text-uppercase">without columns</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/listing-col-left-without-without-static-block_05.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/listing-img-5.png" alt=""/></span>
-														<span class="figcaption text-uppercase">left column,<br> without Static block</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/listing-without-col-without-static-block_06.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/listing-img-6.png" alt=""/></span>
-														<span class="figcaption text-uppercase">without columns,<br> without Static block</span>
-														</a>
-														</span>											
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/listing-without-col-without-static-block_small_07.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/listing-img-7.png" alt=""/></span>
-														<span class="figcaption text-uppercase">Small</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fourth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/listing-without-col-without-static-block_big_08.html">
-														<span class="figure"><img class="img-responsive img-border" src="{{ asset('shop_assets/') }}/images/custom/listing-img-8.png" alt=""/></span>
-														<span class="figcaption text-uppercase">Big</span>
-														</a>
-														</span>
-													</li>
-												</ul>
-											</li>
-											<li class="dropdown dropdown-mega-menu">
-												<span class="dropdown-toggle extra-arrow"></span>
-												<a href="{{ asset('shop_assets/') }}/product-layout11.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">PRODUCT</span></a>
-												<ul class="dropdown-menu megamenu image-links" role="menu">
-													<li class="dl-back"><a href="{{ asset('shop_assets/') }}/#"><span class="icon icon-chevron_left"></span>back</a></li>
-													<li class="col-one-third">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/product-small.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/product-menu-img-1.png" alt=""/></span>
-														<span class="figcaption text-uppercase">image size  - small</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-third">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/product-layout11.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/product-menu-img-2.png" alt=""/></span>
-														<span class="figcaption text-uppercase">image size  - medium</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-third">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/product-big.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/product-menu-img-3.png" alt=""/></span>
-														<span class="figcaption text-uppercase">image size  - big</span>
-														</a>
-														</span>											
-													</li>
-												</ul>
-											</li>
-											<li class="dropdown dropdown-mega-menu">
-												<span class="dropdown-toggle extra-arrow"></span>
-												<a href="{{ asset('shop_assets/') }}/blog-layout-1.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">BLOG</span></a>
-												<ul class="dropdown-menu megamenu image-links" role="menu">
-													<li class="dl-back"><a href="{{ asset('shop_assets/') }}/#"><span class="icon icon-chevron_left"></span>back</a></li>
-													<li class="col-one-third">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/blog-layout-1.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/blog-menu-img-1.png" alt=""/></span>
-														<span class="figcaption text-uppercase">blog - Layout 1</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-third">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/blog-layout-2.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/blog-menu-img-2.png" alt=""/></span>
-														<span class="figcaption text-uppercase">blog - Layout 2</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-third">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/blog-layout-3.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/blog-menu-img-3.png" alt=""/></span>
-														<span class="figcaption text-uppercase">blog - Layout 3</span>
-														</a>
-														</span>											
-													</li>
-												</ul>
-											</li>
-											<li class="dropdown dropdown-mega-menu">
-												<span class="dropdown-toggle extra-arrow"></span>
-												<a href="{{ asset('shop_assets/') }}/gallery-layout-1.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">GALLERY</span></a>
-												<ul class="dropdown-menu megamenu image-links" role="menu">
-													<li class="dl-back"><a href="{{ asset('shop_assets/') }}/#"><span class="icon icon-chevron_left"></span>back</a></li>
-													<li class="col-one-fifth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/gallery-layout-1.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/gallery-menu-img-1.png" alt=""/></span>
-														<span class="figcaption text-uppercase">Gallery - Layout 1</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fifth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/gallery-layout-2.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/gallery-menu-img-2.png" alt=""/></span>
-														<span class="figcaption text-uppercase">Gallery - Layout 2</span>
-														</a>
-														</span>
-													</li>
-													<li class="col-one-fifth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/gallery-layout-3.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/gallery-menu-img-3.png" alt=""/></span>
-														<span class="figcaption text-uppercase">Gallery - Layout 3</span>
-														</a>
-														</span>											
-													</li>
-													<li class="col-one-fifth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/gallery-layout-4.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/gallery-menu-img-4.png" alt=""/></span>
-														<span class="figcaption text-uppercase">Gallery - Layout 4</span>
-														</a>
-														</span>											
-													</li>
-													<li class="col-one-fifth">
-														<span class="image-link">
-														<a href="{{ asset('shop_assets/') }}/gallery-layout-5.html">
-														<span class="figure"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/gallery-menu-img-5.png" alt=""/></span>
-														<span class="figcaption text-uppercase">Gallery - Layout 5</span>
-														</a>
-														</span>											
-													</li>
-												</ul>
-											</li>
-											<li class="dropdown dropdown-mega-menu dropdown-two-col">
-												<span class="dropdown-toggle extra-arrow"></span>
-												<a href="{{ asset('shop_assets/') }}/about.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">PAGES</span></a>
-												<ul class="dropdown-menu multicolumn two-col" role="menu">
-													<li class="dl-back"><a href="{{ asset('shop_assets/') }}/#"><span class="icon icon-chevron_left"></span>back</a></li>													
-													<li><a href="{{ asset('shop_assets/') }}/about.html">About</a></li>
-													<li><a href="{{ asset('shop_assets/') }}/support-24.html">Support 24/7 page</a></li>
-													<li><a href="{{ asset('shop_assets/') }}/services.html">Services</a></li>	
-													<li><a href="{{ asset('shop_assets/') }}/faq.html">FAQs</a></li>													
-													<li><a href="{{ asset('shop_assets/') }}/contact.html">Contact</a></li>
-													<li><a href="{{ asset('shop_assets/') }}/under-construction.html">Under Construction</a></li>
-													<li><a href="{{ asset('shop_assets/') }}/warranty.html">Warranty Page</a></li>
-													<li><a href="{{ asset('shop_assets/') }}/site-map.html">Site Map</a></li>												
-													<li><a href="{{ asset('shop_assets/') }}/delivery-page.html">Delivery Page</a></li>
-													<li><a href="{{ asset('shop_assets/') }}/payment-page.html">Payment page</a></li>													
-													<li><a href="{{ asset('shop_assets/') }}/typography.html">Typography</a></li>	
-													<li><a href="{{ asset('shop_assets/') }}/page-404.html">Page 404</a></li>		
-													<li><a href="{{ asset('shop_assets/') }}/_newsletter-template/newsletter-template.html">Newsletter template</a></li>
-												</ul>
-											</li>											
-											<li class="dropdown dropdown-mega-menu">
-												<span class="dropdown-toggle extra-arrow"></span>
-												<a href="{{ asset('shop_assets/') }}/listing-layout11.html" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">Electronics<span class="badge badge--menu badge--color">SALE</span></span></a>
-												<ul class="dropdown-menu megamenu" role="menu">
-													<li class="dl-back"><a href="{{ asset('shop_assets/') }}/#"><span class="icon icon-chevron_left"></span>back</a></li>
-													<li class="col-sm-3">												
-														<a href="{{ asset('shop_assets/') }}/listing-layout11.html" class="megamenu__subtitle">
-															<span>Laptops</span>
-															<span class="megamenu__category-image hidden-xs"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/layout11/mens-category-1.jpg" alt=""/></span>
-														</a>
-														<ul class="megamenu__submenu megamenu__submenu--marked">
-															<li class="dl-back"><a href="{{ asset('shop_assets/') }}/#"><span class="icon icon-chevron_left"></span>back</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">MaciBooks</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">Chromebooks <span class="badge badge--menu badge--color">SALE</span></a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">Gaming Laptops</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">Business Laptops</a></li>
-														</ul>
-													</li>
-													<li class="col-sm-3">
-														<a href="{{ asset('shop_assets/') }}/listing-layout11.html" class="megamenu__subtitle">
-															<span>Phones</span>
-															<span class="megamenu__category-image hidden-xs"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/layout11/mens-category-2.jpg" alt=""/></span>
-														</a>
-														<ul class="megamenu__submenu megamenu__submenu--marked">
-															<li class="dl-back"><a href="{{ asset('shop_assets/') }}/#"><span class="icon icon-chevron_left"></span>back</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">Cellphones</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">Cell Phones with Plans</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">No-Contract Phones</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">Accesories</a></li>
-														</ul>
-													</li>
-													<li class="col-sm-3">
-														<a href="{{ asset('shop_assets/') }}/#" class="megamenu__subtitle">
-															<span>Tablets</span>
-															<span class="megamenu__category-image hidden-xs"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/layout11/mens-category-3.jpg" alt=""/></span>
-														</a>
-														<ul class="megamenu__submenu megamenu__submenu--marked">
-															<li class="dl-back"><a href="{{ asset('shop_assets/') }}/#"><span class="icon icon-chevron_left"></span>back</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">2-in-1s</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">Ipadi & Tablets</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">Kids Tablets</a></li>
-														</ul>
-													</li>
-													<li class="col-sm-3">
-														<a href="{{ asset('shop_assets/') }}/#" class="megamenu__subtitle">
-															<span>Smartwatches</span>
-															<span class="megamenu__category-image hidden-xs"><img class="img-responsive" src="{{ asset('shop_assets/') }}/images/custom/layout11/mens-category-4.jpg" alt=""/></span>
-														</a>
-														<ul class="megamenu__submenu megamenu__submenu--marked">
-															<li class="dl-back"><a href="{{ asset('shop_assets/') }}/#"><span class="icon icon-chevron_left"></span>back</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">Smartwatch</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">Watch</a></li>
-															<li class="level2"><a href="{{ asset('shop_assets/') }}/listing-layout11.html">Watch Sport</a></li>
-														</ul>
-													</li>
-													
-												</ul>
-											</li>
-										</ul>
+										@include('shop.pages.nav_bar')
 									</div>
 										</nav>
 									</div>
 									<!-- /navigation end -->
-									<!-- shopping cart start -->
+									<!-- shopping cart start -->{{-- 
 									<div class="pull-right col-stuck-cart text-right">								
 										<div class="cart link-inline">
 										<div class="dropdown text-right">
@@ -874,13 +515,13 @@
 													</ul>
 													<div class="cart__bottom">
 														<div class="cart__total">Cart subtotal: <span> $65.00</span></div>
-														<button class="btn btn--ys btn-checkout">Checkout <span class="icon icon--flippedX icon-reply"></span></button>
+														<a href="{{ route('shop.checkOut') }}" class="btn btn--ys btn-checkout">Checkout <span class="icon icon--flippedX icon-reply"></span></a>
 														<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys"><span class="icon icon-shopping_basket"></span> View Cart</a>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> --}}
 									<!-- shopping cart end -->	
 								</div>	
 						    </div>							
@@ -1011,67 +652,8 @@
 								</div>
 								<!-- /icon toggle menu -->
 								<!-- shopping cart start -->
-								<div class="cart link-inline">
-									<div class="dropdown text-right">
-										<a class="dropdown-toggle">
-										<span class="icon icon-shopping_basket"></span>
-										<span class="badge badge--cart">2</span>
-										</a>
-										<div class="dropdown-menu dropdown-menu--xs-full slide-from-top" role="menu">
-											<div class="container">
-												<div class="cart__top">Recently added item(s)</div>
-												<a href="{{ asset('shop_assets/') }}/#" class="icon icon-close cart__close"><span>CLOSE</span></a>
-												<ul>
-													<li class="cart__item">
-														<div class="cart__item__image pull-left"><a href="{{ asset('shop_assets/') }}/#"><img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-02.jpg" alt=""/></a></div>
-														<div class="cart__item__control">
-															<div class="cart__item__delete"><a href="{{ asset('shop_assets/') }}/#" class="icon icon-delete"><span>Delete</span></a></div>
-															<div class="cart__item__edit"><a href="{{ asset('shop_assets/') }}/#" class="icon icon-edit"><span>Edit</span></a></div>
-														</div>
-														<div class="cart__item__info">
-															<div class="cart__item__info__title">
-																<h2><a href="{{ asset('shop_assets/') }}/#">Quis nostrud exercit ation ullamco</a></h2>
-															</div>
-															<div class="cart__item__info__price"><span class="info-label">Price:</span><span>$84.00</span></div>
-															<div class="cart__item__info__qty"><span class="info-label">Qty:</span><input type="text" class="input--ys" value='1' /></div>
-															<div class="cart__item__info__details">
-																<div class='multitooltip'>
-																	<a href="{{ asset('shop_assets/') }}/#">Details</a>
-																	<div class="tip on-bottom">
-																		<span><strong>Color:</strong> Purple</span>
-																		<span><strong>Quantity:</strong> 200</span>
-																		<span><strong>Image:</strong> No</span>
-																		<span><strong>Paper:</strong> Type Linen</span>
-																		<span><strong>Size:</strong> 4"x3.5"</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</li>
-													<li class="cart__item">
-														<div class="cart__item__image pull-left"><a href="{{ asset('shop_assets/') }}/#"><img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-01.jpg" alt=""/></a></div>
-														<div class="cart__item__control">
-															<div class="cart__item__delete"><a href="{{ asset('shop_assets/') }}/#" class="icon icon-delete"><span>Delete</span></a></div>
-															<div class="cart__item__edit"><a href="{{ asset('shop_assets/') }}/#" class="icon icon-edit"><span>Edit</span></a></div>
-														</div>
-														<div class="cart__item__info">
-															<div class="cart__item__info__title">
-																<h2 class="title-center"><a href="{{ asset('shop_assets/') }}/#">Quis nostrud exercit ation ullamco</a></h2>
-															</div>
-															<div class="cart__item__info__price"><span class="info-label">Price:</span><span>$84.00</span></div>
-															<div class="cart__item__info__qty"><span class="info-label">Qty:</span><input type="text" class="input--ys" value='1' /></div>															
-														</div>
-													</li>
-												</ul>
-												<div class="cart__bottom">
-													<div class="cart__total">Cart subtotal: <span> $65.00</span></div>
-													<button class="btn btn--ys btn-checkout">Checkout <span class="icon icon--flippedX icon-reply"></span></button>
-													<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys"><span class="icon icon-shopping_basket"></span> View Cart</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+									@include('shop.pages.inline_shoping_cart')
+
 								<!-- shopping cart end -->			
 							</div>
 						</div>
@@ -1132,7 +714,7 @@
 								</a>
 							</div>
 							<div class="col-sm-6  col-md-6">
-								<a href="{{ asset('shop/category') }}{{'/'.$nike->brand->slug}}" class="banner zoom-in">
+								<a href="{{ asset('shop/brand') }}{{'/'.$nike->brand->slug}}" class="banner zoom-in">
 									<span class="figure">
 										<img src="{{ url(\Storage::url($nike->images[0]->link)) }}" alt=""/>
 										<span class="figcaption text-center">
@@ -1149,7 +731,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12">
-								<a href="{{ asset('shop/category') }}{{'/'.$jordan->brand->slug}}" class="banner zoom-in">
+								<a href="{{ asset('shop/brand') }}{{'/'.$jordan->brand->slug}}" class="banner zoom-in">
 									<span class="figure">
 										<img src="{{ url(\Storage::url($jordan->images[1]->link)) }}" alt=""/>
 										<span class="figcaption">
@@ -1174,7 +756,7 @@
 				<div class="row">					
 					<div class="col-xs-12">
 						<!-- banner -->
-						<a href="{{ asset('shop/category') }}{{'/'.$adidas->brand->slug}}" class="banner banner-bg image-bg zoom-in" data-image="{{ asset('shop_assets/') }}/images/custom/layout11/banner-23.jpg">
+						<a href="{{ asset('shop/brand') }}{{'/'.$adidas->brand->slug}}" class="banner banner-bg image-bg zoom-in" data-image="{{ asset('shop_assets/') }}/images/custom/layout11/banner-23.jpg">
 							<span class="figure">
 								<img src="{{ url(\Storage::url($adidas->images[6]->link)) }}" alt=""/>
 								<span class="figcaption">
@@ -1216,14 +798,14 @@
 								</a>
 							</div>
 							<div class="col-md-3">
-								<a href="{{ asset('shop/category') }}{{'/'.$bitis->brand->slug}}" class="banner zoom-in">
+								<a href="{{ asset('shop/brand') }}{{'/'.$bitis->brand->slug}}" class="banner zoom-in">
 								<span class="figure">
 									<img src="{{ url(\Storage::url($bitis->images[4]->link)) }}" alt=""/>
 									<span class="figcaption">
 										<span class="block-table">
 											<span class="block-table-cell">
-												<span class="block text-uppercase font-bold  font-size40">Biti's Hunter</span>
-												<span class="block text-uppercase top-indent-sm1 font-size22">get up to 20% off</span>
+												<span class="block text-uppercase font-bold color-yellow font-size40">Biti's Hunter</span>
+												<span class="block text-uppercase top-indent-sm1 color-blue-light font-size22">get up to 20% off</span>
 												<span class="btn btn--ys btn--bg-red btn--xl top-indent-md">Shop now!</span>
 											</span>
 										</span>
@@ -1247,7 +829,7 @@
 								</a>
 							</div>							
 							<div class="col-md-3">
-								<a href="{{ asset('shop/category') }}{{'/'.$puma->brand->slug}}" class="banner zoom-in">
+								<a href="{{ asset('shop/brand') }}{{'/'.$puma->brand->slug}}" class="banner zoom-in">
 									<span class="figure">
 										<img src="{{ url(\Storage::url($puma->images[4]->link)) }}" alt=""/>
 										<span class="figcaption">
@@ -1279,582 +861,59 @@
 					<!-- /title --> 
 					<!-- carousel -->
 					<div class="carousel-products row" id="carouselFeatured">
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-01.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="{{ asset('shop_assets/') }}/#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="{{ asset('shop_assets/') }}/product-layout11.html">Mauris lacinia lectus</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">
-										$86.00
-										<span class="price-box__old">$28.00</span>
-									</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
+						@foreach ($products as $product)
+							<div class="col-lg-3">
+								<!-- product -->
+								<div class="product">
+									<div class="product__inside">
+										<!-- product image -->
+										<div class="product__inside__image">
+											<a href="#"> <img src="{{ url(\Storage::url($product->images[0]->link)) }}" alt=""> </a> 
+											<!-- quick-view --> 
+											<a href="" data-toggle="modal" data-url="{{ route('shop.productModal',$product->code) }}" class="quick-view btn-quickview"><b><span class="icon icon-visibility"></span> Quick view</b> </a> 
+											<!-- /quick-view --> 
 										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
-									</div>
-								</div>
-							</div>
-							<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-									<div class="product">
-										<div class="product__inside">
-											<!-- product image -->
-											<div class="product__inside__image">
-												<!-- product image carousel -->
-												<div class="product__inside__carousel slide" data-ride="carousel">
-													<div class="carousel-inner" role="listbox">
-														<div class="item active"> <a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-02.jpg" alt=""> </a> </div>
-														<div class="item"> <a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-04.jpg" alt=""> </a> </div>
-														<div class="item"> <a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-05.jpg" alt=""> </a> </div>
-													</div>
-													<!-- Controls --> 
-													<a class="carousel-control next"></a> <a class="carousel-control prev"></a> 
-												</div>
-												<!-- /product image carousel -->  
-												<!-- quick-view --> 
-												<a href="{{ asset('shop_assets/') }}/#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a> 
-												<!-- /quick-view --> 												 
+										<!-- /product image --> 											
+										<!-- product name -->
+										<div class="product__inside__name">
+											<h2><a href="#">{{$product->name}}</a></h2>
+										</div>
+										<!-- /product name --> 
+										<!-- product price -->
+										<div class="product__inside__price price-box">
+											${{$product->sale_price}}
+											<span class="price-box__old">{{$product->origin_price}}</span>
+										</div>
+										<!-- /product price --> 
+										<div class="product__inside__hover">
+											<!-- product info -->
+											<div class="product__inside__info">
+												<div class="product__inside__info__btns"> <a href="{{ asset('shop/product') }}{{'/'.$product->slug}}" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
+												<a href="#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
+												<a href="#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
+												<ul class="product__inside__info__link hidden-xs">
+													<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="#"><span class="text">Add to wishlist</span></a></li>
+													<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="#" class="compare-link"><span class="text">Add to compare</span></a></li>
+												</ul>
 											</div>
-											<!-- /product image -->
-											
-											<!-- label sale -->
-											<div class="product__label product__label--left product__label--sale"> <span>Sale<br>
-												-20%</span> 
-											</div>
-											<!-- /label sale --> 
-											<!-- product name -->
-											<div class="product__inside__name">
-												<h2><a href="{{ asset('shop_assets/') }}/product.html">Mauris lacinia lectus</a></h2>
-											</div>
-											<!-- /product name --> 
-											<!-- product description --> 
-											<!-- visible only in row-view mode -->
-											<div class="product__inside__description row-mode-visible"> Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </div>
-											<!-- /product description --> 
-											<!-- product price -->
-											<div class="product__inside__price price-box">$26.00<span class="price-box__old">$28.00</span></div>
-											<!-- /product price --> 
-											<!-- product review --> 
-											<!-- visible only in row-view mode -->
-											<div class="product__inside__review row-mode-visible">
-												<div class="rating row-mode-visible"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-												<a href="{{ asset('shop_assets/') }}/#">1 Review(s)</a> <a href="{{ asset('shop_assets/') }}/#">Add Your Review</a> 
-											</div>
-											<!-- /product review --> 
-											<div class="product__inside__hover">
-												<!-- product info -->
-												<div class="product__inside__info">
-													<ul class="options-swatch options-swatch--color">
-														<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/blue.png"  alt=""/></span></a></li>
-														<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/yellow.png"  alt=""/></span></a></li>
-														<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/red.png"  alt=""/></span></a></li>
-													</ul>
-													<div class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-													<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-													<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-													<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-													<ul class="product__inside__info__link hidden-xs">
-														<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-														<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-													</ul>
-												</div>
-												<!-- /product info --> 
-												<!-- product rating -->
-												<div class="rating row-mode-hide"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-												<!-- /product rating -->
-											</div>
+											<!-- /product info --> 
+											<!-- product rating -->
+											<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
+											<!-- /product rating --> 
 										</div>
-									</div>
-									<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-03.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="{{ asset('shop_assets/') }}/#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="{{ asset('shop_assets/') }}/product-layout11.html">Mauris lacinia lectus</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- label news -->
-											<div class="product__label product__label--right product__label--new"> <span>new</span> </div>
-											<!-- /label news --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">$46.00</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
-										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
 									</div>
 								</div>
+								<!-- /product --> 
 							</div>
-							<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product sold-out">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-04.jpg" alt=""> </a> 
-										<!-- label sold-out -->
-										<div class="product__label--sold-out"> <span>sold<br>
-											out</span> 
-										</div>
-										<!-- /label sold-out --> 
-									</div>
-									<!-- /product image --> 
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="{{ asset('shop_assets/') }}/product-layout11.html">Mauris lacinia lectus</a></h2>
-									</div>
-									<!-- /product name -->                 <!-- product description --> 
-									<!-- visible only in row-view mode -->
-									<div class="product__inside__description row-mode-visible"> Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </div>
-									<!-- /product description -->                 <!-- product price -->
-									<div class="product__inside__price price-box">$133.00</div>
-									<!-- /product price -->                 <!-- product review --> 
-									<!-- visible only in row-view mode -->
-									<div class="product__inside__review row-mode-visible">
-										<div class="rating row-mode-visible"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<a href="{{ asset('shop_assets/') }}/#">1 Review(s)</a> <a href="{{ asset('shop_assets/') }}/#">Add Your Review</a> 
-									</div>
-									<!-- /product review --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
-										</div>
-										<!-- /product info --> <!-- product rating -->
-										<div class="rating row-mode-hide"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
-									</div>
-								</div>
-							</div>
-							<!-- /product -->
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-05.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="{{ asset('shop_assets/') }}/#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a> 
-										<!-- /quick-view --> 
-										<!-- countdown_box -->
-										<div class="countdown_box">
-											<div class="countdown_inner">
-												<div id="countdown1"></div>
-											</div>
-										</div>
-										<!-- /countdown_box -->
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="{{ asset('shop_assets/') }}/product-layout11.html">Mauris lacinia lectus</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">$587.00</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<ul class="options-swatch options-swatch--color">
-												<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/blue.png" width="10" height="10" alt=""/></span></a></li>
-												<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/yellow.png" width="10" height="10" alt=""/></span></a></li>
-												<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/red.png" width="10" height="10" alt=""/></span></a></li>
-											</ul>
-											<div  class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
-										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
-									</div>
-								</div>
-							</div>
-							<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-06.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="{{ asset('shop_assets/') }}/#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="{{ asset('shop_assets/') }}/product-layout11.html">Mauris lacinia lectus</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">$128.00</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
-										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
-									</div>
-								</div>
-							</div>
-							<!-- /product --> 
-						</div>
-
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-01.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="{{ asset('shop_assets/') }}/#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="{{ asset('shop_assets/') }}/product-layout11.html">Mauris lacinia lectus</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">
-										$86.00
-										<span class="price-box__old">$28.00</span>
-									</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
-										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
-									</div>
-								</div>
-							</div>
-							<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-02.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="{{ asset('shop_assets/') }}/#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="{{ asset('shop_assets/') }}/product-layout11.html">Mauris lacinia lectus</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">$26.00</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
-										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
-									</div>
-								</div>
-							</div>
-							<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-03.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="{{ asset('shop_assets/') }}/#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="{{ asset('shop_assets/') }}/product-layout11.html">Mauris lacinia lectus</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">$46.00</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
-										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
-									</div>
-								</div>
-							</div>
-							<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product sold-out">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-04.jpg" alt=""> </a> 
-										<!-- label sold-out -->
-										<div class="product__label--sold-out"> <span>sold<br>
-											out</span> 
-										</div>
-										<!-- /label sold-out --> 
-									</div>
-									<!-- /product image --> 
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="{{ asset('shop_assets/') }}/product-layout11.html">Mauris lacinia lectus</a></h2>
-									</div>
-									<!-- /product name -->                 <!-- product description --> 
-									<!-- visible only in row-view mode -->
-									<div class="product__inside__description row-mode-visible"> Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </div>
-									<!-- /product description -->                 <!-- product price -->
-									<div class="product__inside__price price-box">$133.00</div>
-									<!-- /product price -->                 <!-- product review --> 
-									<!-- visible only in row-view mode -->
-									<div class="product__inside__review row-mode-visible">
-										<div class="rating row-mode-visible"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<a href="{{ asset('shop_assets/') }}/#">1 Review(s)</a> <a href="{{ asset('shop_assets/') }}/#">Add Your Review</a> 
-									</div>
-									<!-- /product review --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
-										</div>
-										<!-- /product info --> <!-- product rating -->
-										<div class="rating row-mode-hide"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
-									</div>
-								</div>
-							</div>
-							<!-- /product -->
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-05.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="{{ asset('shop_assets/') }}/#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="{{ asset('shop_assets/') }}/product-layout11.html">Mauris lacinia lectus</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">$587.00</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<ul class="options-swatch options-swatch--color">
-												<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/blue.png" width="10" height="10" alt=""/></span></a></li>
-												<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/yellow.png" width="10" height="10" alt=""/></span></a></li>
-												<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/red.png" width="10" height="10" alt=""/></span></a></li>
-											</ul>
-											<div  class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
-										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
-									</div>
-								</div>
-							</div>
-							<!-- /product --> 
-						</div>
-						<div class="col-lg-3">
-							<!-- product -->
-							<div class="product">
-								<div class="product__inside">
-									<!-- product image -->
-									<div class="product__inside__image">
-										<a href="{{ asset('shop_assets/') }}/product-layout11.html"> <img src="{{ asset('shop_assets/') }}/images/custom/layout11/products/product-06.jpg" alt=""> </a> 
-										<!-- quick-view --> 
-										<a href="{{ asset('shop_assets/') }}/#" data-toggle="modal" data-target="#quickViewModal" class="quick-view"><b><span class="icon icon-visibility"></span> Quick view</b> </a> 
-										<!-- /quick-view --> 
-									</div>
-									<!-- /product image --> 											
-									<!-- product name -->
-									<div class="product__inside__name">
-										<h2><a href="{{ asset('shop_assets/') }}/product-layout11.html">Mauris lacinia lectus</a></h2>
-									</div>
-									<!-- /product name --> 
-									<!-- product price -->
-									<div class="product__inside__price price-box">$128.00</div>
-									<!-- /product price --> 
-									<div class="product__inside__hover">
-										<!-- product info -->
-										<div class="product__inside__info">
-											<div class="product__inside__info__btns"> <a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl"><span class="icon icon-shopping_basket"></span> Add to cart</a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-favorite_border"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl visible-xs"><span class="icon icon-sort"></span></a>
-											<a href="{{ asset('shop_assets/') }}/#" class="btn btn--ys btn--xl  row-mode-visible hidden-xs"><span class="icon icon-visibility"></span> Quick view</a> </div>
-											<ul class="product__inside__info__link hidden-xs">
-												<li class="text-right"><span class="icon icon-favorite_border  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#"><span class="text">Add to wishlist</span></a></li>
-												<li class="text-left"><span class="icon icon-sort  tooltip-link"></span><a href="{{ asset('shop_assets/') }}/#" class="compare-link"><span class="text">Add to compare</span></a></li>
-											</ul>
-										</div>
-										<!-- /product info --> 
-										<!-- product rating -->
-										<div class="rating"> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span> </div>
-										<!-- /product rating --> 
-									</div>
-								</div>
-							</div>
-							<!-- /product --> 
-						</div>
+						@endforeach
 					</div>
 					
 					<!-- /carousel --> 
 				</div>
 			</div>			
 			
-			<div class="content carusel--parallax"  data-image="{{ asset('shop_assets/') }}/images/custom/layout11/parallax-img-01.jpg">
+			<div class="content carusel--parallax"  data-image="https://images.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/running-fw18-solar-glp-masthead-male-desktop_tcm221-262051.jpg">
 				<div class="container">					
 					<div class="row">
 						<div class="col-lg-12">
@@ -1888,9 +947,9 @@
 										</div>
 										<div class="col-lg-12 col-xl-6">
 											<div class="recent-post-box__text">
-												<h4><a href="{{ asset('shop_assets/') }}/blog-post-right-column.html">Mauris lacinia lectus</a></h4>
-												<div class="author">by <b>Admin</b></div>
-												<p>
+												<h4><a href="#">Mauris lacinia lectus</a></h4>
+												<div class="author" style="color: white;">by <b>Admin</b></div>
+												<p style="color: white;">
 													Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet.
 												</p>
 												<a class="link-commet" href="{{ asset('shop_assets/') }}/blog-post-right-column.html"><span class="icon icon-message "></span><span class="number">0</span> comment(s)</a>
@@ -1920,8 +979,8 @@
 										<div class="col-lg-12 col-xl-6">
 											<div class="recent-post-box__text">
 												<h4><a href="{{ asset('shop_assets/') }}/blog-post-right-column.html">Lorem ipsum dolor</a> </h4>
-												<div class="author">by <b>Admin</b></div>
-												<p>
+												<div class="author" style="color: white;">by <b>Admin</b></div>
+												<p style="color: white;">
 													Dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet.
 												</p>
 												<a class="link-commet" href="{{ asset('shop_assets/') }}/blog-post-right-column.html"><span class="icon icon-message "></span><span class="number">0</span> comment(s)</a>
@@ -1931,69 +990,6 @@
 									<!-- / -->
 								</div>
 								<!-- /slide -->
-								<!-- slide-->
-								<div class="col-sm-3 col-xl-6">
-									<!--  -->
-									<div class="recent-post-box">
-										<div class="col-lg-12 col-xl-6">
-											<a href="{{ asset('shop_assets/') }}/blog-post-right-column.html">
-												<span class="figure">
-													<img src="{{ asset('shop_assets/') }}/images/custom/layout11/recent-posts-01.jpg" alt="">
-													<span class="figcaption label-top-left">
-														<span>
-															<b>26</b>
-															<em>jun</em>
-														</span>
-													</span>
-												</span>
-											</a>
-										</div>
-										<div class="col-lg-12 col-xl-6">
-											<div class="recent-post-box__text">
-												<h4><a href="{{ asset('shop_assets/') }}/blog-post-right-column.html">Mauris lacinia lectus</a></h4>
-												<div class="author">by <b>Admin</b></div>
-												<p>
-													Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet.
-												</p>
-												<a class="link-commet" href="{{ asset('shop_assets/') }}/blog-post-right-column.html"><span class="icon icon-message "></span><span class="number">0</span> comment(s)</a>
-											</div>
-										</div>
-									</div>
-									<!-- / -->
-								</div>
-								<!-- /slide -->
-								<!-- slide -->
-								<div class="col-sm-3 col-xl-6">
-									<!--  -->
-									<div class="recent-post-box">
-										<div class="col-lg-12 col-xl-6">
-											<a href="{{ asset('shop_assets/') }}/blog-post-right-column.html">
-											<span class="figure">
-											<img src="{{ asset('shop_assets/') }}/images/custom/layout11/recent-posts-02.jpg" alt="">
-											<span class="figcaption label-top-left">
-											<span>
-											<b>26</b>
-											<em>jun</em>
-											</span>
-											</span>
-											</span>
-											</a>
-										</div>
-										<div class="col-lg-12 col-xl-6">
-											<div class="recent-post-box__text">
-												<h4><a href="{{ asset('shop_assets/') }}/blog-post-right-column.html">Lorem ipsum dolor</a> </h4>
-												<div class="author">by <b>Admin</b></div>
-												<p>
-													Dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, laoreet sit amet.
-												</p>
-												<a class="link-commet" href="{{ asset('shop_assets/') }}/blog-post-right-column.html"><span class="icon icon-message "></span><span class="number">0</span> comment(s)</a>
-											</div>
-										</div>
-									</div>
-									<!-- / -->
-								</div>
-								<!-- /slide -->
-								
 							</div>
 							<!-- /carousel-new -->
 						</div>
@@ -2371,45 +1367,37 @@
 						<div class="row product-info-outer">
 							<div class="col-xs-12 col-sm-5 col-md-6 col-lg-6">
 								<div class="product-main-image">
-									<div class="product-main-image__item"><img src='{{ asset('shop_assets/') }}/images/product/product-big-1.jpg' alt="" /></div>
+									<div class="product-main-image__item"><img id='product_image' src='' alt="" /></div>
 								</div>
 							</div>
 							<div class="product-info col-xs-12 col-sm-7 col-md-6 col-lg-6">
 								<div class="wrapper">
-									<div class="product-info__sku pull-left">SKU: <strong>mtk012c</strong></div>
+									<div class="product-info__sku pull-left">SKU: <strong id='product_code'></strong></div>
 									<div class="product-info__availabilitu pull-right">Availability:   <strong class="color">In Stock</strong></div>
 								</div>
 								<div class="product-info__title">
-									<h2>Lorem ipsum dolor sit ctetur</h2>
+									<h2 id='product_name'></h2>
 								</div>
-								<div class="price-box product-info__price"><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
+								<div class="price-box product-info__price"><span class="price-box__new" id='product_sale_price'>$65.00</span> <span class="price-box__old" id='product_origin_price'>$84.00</span></div>
 								<div class="divider divider--xs product-info__divider"></div>
 								<div class="product-info__description">
 									<div class="product-info__description__brand"><img src="{{ asset('shop_assets/') }}/images/custom/brand.png" alt=""> </div>
-									<div class="product-info__description__text">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+									<div class="product-info__description__text" id='product_description'></div>
 								</div>
 								<div class="divider divider--xs product-info__divider"></div>
 								<div class="wrapper">
-									<div class="pull-left"><span class="option-label">COLOR:</span>  Red + $10.00 *</div>
+									<div class="pull-left"><span class="option-label">COLOR:</span></div>
 									<div class="pull-right required">* Required Fields</div>
 								</div>
-								<ul class="options-swatch options-swatch--color options-swatch--lg">
-									<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/oldlace.png" alt=""/></span></a></li>
-									<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/dark-grey.png" alt=""/></span></a></li>
-									<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/grey.png" alt=""/></span></a></li>
-									<li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/light-grey.png" alt=""/></span></a></li>
+								<ul class="options-swatch options-swatch--color options-swatch--lg" id='product_color'>
+									{{-- <li><a href="{{ asset('shop_assets/') }}/#"><span class="swatch-label"><img src="{{ asset('shop_assets/') }}/images/colors/oldlace.png" alt=""/></span></a></li> --}}
 								</ul>						
 								<div class="wrapper">
 									<div class="pull-left"><span class="option-label">SIZE:</span></div>
 									<div class="pull-left required">*</div>
 								</div>
-								<ul class="options-swatch options-swatch--size options-swatch--lg">
-									<li><a href="{{ asset('shop_assets/') }}/#">S</a></li>
-									<li><a href="{{ asset('shop_assets/') }}/#">M</a></li>
-									<li><a href="{{ asset('shop_assets/') }}/#">L</a></li>
-									<li><a href="{{ asset('shop_assets/') }}/#">XL</a></li>
-									<li><a href="{{ asset('shop_assets/') }}/#">2XL</a></li>
-									<li><a href="{{ asset('shop_assets/') }}/#">3XL</a></li>
+								<ul class="options-swatch options-swatch--size options-swatch--lg" id='product_size'>
+									{{-- <li><a href="{{ asset('shop_assets/') }}/#">S</a></li> --}}
 								</ul>
 								<div class="divider divider--sm"></div>
 								<div class="wrapper">
@@ -2489,6 +1477,11 @@
 		<script src="{{ asset('shop_assets/') }}/external/colorbox/jquery.colorbox-min.js"></script> 		
 		<!-- Custom --> 
 		<script src="{{ asset('shop_assets/') }}/js/custom.js"></script>
-		<script src="{{ asset('shop_assets/') }}/js/js-index-11.js"></script>					
+		<script src="{{ asset('shop_assets/') }}/js/js-index-11.js"></script>
+		<!-- Latest compiled and minified CSS & JS -->
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>					
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript" charset="utf-8" async defer></script>	
+		<script src="{{ asset('shop_assets/') }}/ajax/ajax.js"></script> 
 	</body>
 </html>

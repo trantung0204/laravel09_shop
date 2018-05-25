@@ -59,8 +59,17 @@ Route::prefix('shop')->group(function(){
 		
 	});
 	Route::get('/home', 'Shop\ShopController@index')->name('shop.index');
-	Route::get('/category', 'Shop\ShopController@categoryList')->name('shop.categoryList');
-	Route::get('/product', 'Shop\ShopController@product')->name('shop.product');
+	Route::get('/category/{slug}', 'Shop\ShopController@categoryList')->name('shop.categoryList');
+	Route::get('/brand/{slug}', 'Shop\ShopController@brandList')->name('shop.brandList');
+	Route::get('/product/{slug}', 'Shop\ShopController@showProduct')->name('shop.showProduct');
+	Route::get('/checkout', 'Shop\ShopController@checkOut')->name('shop.checkOut');
+	//Route::get('/product', 'Shop\ShopController@product')->name('shop.product');
+	Route::get('/qickView/{code}', 'Shop\ShopController@productModal')->name('shop.productModal');
+	Route::get('/getImageByColor/{id}/{color_id}', 'Shop\ShopController@getImageByColor')->name('shop.getImageByColor');
+	Route::get('/getSizeByColor/{code}/{color_id}', 'Shop\ShopController@getSizeByColor')->name('shop.getSizeByColor');
+	Route::get('/testCart', 'Shop\CartController@testCart')->name('shop.testCart');
+	Route::get('/getCart', 'Shop\CartController@getCart')->name('shop.getCart');
+	Route::post('/addProduct', 'Shop\CartController@addProduct')->name('shop.addProduct');
 });
 
 Auth::routes();

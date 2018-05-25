@@ -51,10 +51,10 @@ class ProductController extends Controller
         ->addColumn('action', function ($product) {
             return'
             <button type="button" class="btn btn-xs btn-default btn-detail btn-menu" data-url="'.route('getProductDetails', $product->code).'" data-code="'.$product->code.'" data-url-add="'.route('addDetail').'"><i class="fa fa-ellipsis-h" aria-hidden="true"></i><span class="btn-text"> Details</span></button>
+            <button type="button" class="btn btn-xs btn-success btn-image btn-menu"  data-url="'.route('listColors', $product->code).'" data-url-image="'.route('listImages', $product->id).'" data-id="'.$product->id.'" data-name="'.$product->name.'"><i class="fa fa-upload" aria-hidden="true"></i><span class="btn-text"> Images</span></button>
             <button type="button" class="btn btn-xs btn-info btn-view btn-menu" data-url="'.route('products.show', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-eye" aria-hidden="true"></i><span class="btn-text"> Info</span></button>
             <button type="button" class="btn btn-xs btn-warning btn-edit btn-menu" data-url="'.route('products.show', $product->id).'"  data-id="'.$product->id.'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="btn-text"> Edit</span></button>
             <button type="button" class="btn btn-xs btn-danger btn-del btn-menu" data-url="'.route('products.destroy', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-trash" aria-hidden="true"></i><span class="btn-text"> Remove</span></button>
-            <button type="button" class="btn btn-xs btn-success btn-image btn-menu"  data-url="'.route('listColors', $product->code).'" data-url-image="'.route('listImages', $product->id).'" data-id="'.$product->id.'" data-name="'.$product->name.'"><i class="fa fa-upload" aria-hidden="true"></i><span class="btn-text"> Images</span></button>
             ';
             
         })

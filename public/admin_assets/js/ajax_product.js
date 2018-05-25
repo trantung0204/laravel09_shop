@@ -338,8 +338,6 @@ $(function () {
 			type: 'get',
 			url: urlImage,
 			success: function (response) {
-				// $('#choose_color').append('<option value="'+ response.id +'">'+ response.name +'</option>');
-				//console.log(response);
 				$("#image_preview").html("");
 
 				response.data.map(function(image, index){

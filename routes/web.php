@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('products/create', function () {
+    return view('products.create');
+});
 Route::prefix('admin')->group(function(){
 	Route::middleware('admin.auth')->group( function ()
 	{
@@ -67,9 +69,14 @@ Route::prefix('shop')->group(function(){
 	Route::get('/qickView/{code}', 'Shop\ShopController@productModal')->name('shop.productModal');
 	Route::get('/getImageByColor/{id}/{color_id}', 'Shop\ShopController@getImageByColor')->name('shop.getImageByColor');
 	Route::get('/getSizeByColor/{code}/{color_id}', 'Shop\ShopController@getSizeByColor')->name('shop.getSizeByColor');
+
 	Route::get('/testCart', 'Shop\CartController@testCart')->name('shop.testCart');
 	Route::get('/getCart', 'Shop\CartController@getCart')->name('shop.getCart');
+	Route::get('/delItem/{rowId}', 'Shop\CartController@delItem')->name('shop.delItem');
+	Route::post('/editItem/{rowId}', 'Shop\CartController@editItem')->name('shop.editItem');
 	Route::post('/addProduct', 'Shop\CartController@addProduct')->name('shop.addProduct');
+
+	Route::post('/addOrder', 'Shop\OrderController@addOrder')->name('shop.addOrder');
 });
 
 Auth::routes();

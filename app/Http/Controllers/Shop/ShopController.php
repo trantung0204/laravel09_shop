@@ -29,7 +29,9 @@ class ShopController extends Controller
         $colors=Color::all();
         $sizes=Size::all();
         $carts=Cart::content();
-        return view('shop.pages.home',compact('brands','categories','colors','sizes','products','nike','jordan','adidas','bitis','puma','carts'));
+        $countCarts=Cart::count();
+        $subtotalCarts=Cart::subtotal();
+        return view('shop.pages.home',compact('brands','categories','colors','sizes','products','nike','jordan','adidas','bitis','puma','carts','countCarts','subtotalCarts'));
     }
     public function categoryList($slug)
     {
@@ -41,7 +43,9 @@ class ShopController extends Controller
         $colors=Color::all();
         $sizes=Size::all();
         $carts=Cart::content();
-        return view('shop.pages.listing',compact('brands','categories','colors','sizes','category','categoryProducts','category_name','carts'));
+        $countCarts=Cart::count();
+        $subtotalCarts=Cart::subtotal();
+        return view('shop.pages.listing',compact('brands','categories','colors','sizes','category','categoryProducts','category_name','carts','subtotalCarts','countCarts'));
     }
     public function brandList($slug)
     {
@@ -53,8 +57,9 @@ class ShopController extends Controller
         $colors=Color::all();
         $sizes=Size::all();
         $carts=Cart::content();
+        $countCarts=Cart::count();
         $subtotalCarts=Cart::subtotal();
-        return view('shop.pages.listing',compact('brands','categories','colors','sizes','brand','brandProducts','brand_name','carts','subtotalCarts'));
+        return view('shop.pages.listing',compact('brands','categories','colors','sizes','brand','brandProducts','brand_name','carts','subtotalCarts','countCarts'));
     }
     public function showProduct($slug)
     {
@@ -89,7 +94,12 @@ class ShopController extends Controller
     {
         $brands=Brand::all();
         $categories=Category::all();
-        return view('shop.pages.checkout',compact('brands','categories'));
+        $carts=Cart::content();
+        $subtotalCarts=Cart::subtotal();
+        $totalCarts=Cart::total();
+        $taxCarts=Cart::tax();
+        $countCarts=Cart::count();
+        return view('shop.pages.checkout',compact('brands','categories','carts','subtotalCarts','countCarts','taxCarts','totalCarts'));
     }
     public function productModal($code)
     {

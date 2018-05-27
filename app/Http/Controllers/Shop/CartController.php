@@ -31,7 +31,7 @@ class CartController extends Controller
     }
     public function addProduct(Request $request)
     {
-    	$product=DB::table('products')->where('code',$request->product_code)->first();
+    	// $product=DB::table('products')->where('code',$request->product_code)->first();
     	$productDetail=DB::table('product_details')
                             ->where('product_id', '=', $request->product_code)
                             ->where('size_id', '=', $request->size_id)
@@ -39,15 +39,23 @@ class CartController extends Controller
                             ->join('colors', 'product_details.color_id', '=', 'colors.id')
                             ->join('sizes', 'product_details.size_id', '=', 'sizes.id')
                             ->join('products', 'product_details.product_id', '=', 'products.code')
-                            ->select('product_details.*', 'colors.name as color_name','colors.code as color_code', 'sizes.size as size_name', 'products.name as product_name')
+                            ->select('product_details.*', 'colors.name as color_name','colors.code as color_code', 'sizes.size as size_name', 'products.name as product_name', 'products.sale_price as product_price', 'products.id as product_id')
                             ->first();
-        $image=DB::table('images')->where('product_id',$product->id)->where('color_id',$request->color_id)->first();
-		Cart::add(['id' => $productDetail->id, 'name' => $product->name, 'qty' => $request->quantity, 'price' => $product->sale_price, 'options' => ['size' => $productDetail->size_name,'productCode' => $request->product_code,'color' => $productDetail->color_name,'image' => $image->link]]);
+        $image=DB::table('images')->where('product_id',$productDetail->product_id)->where('color_id',$request->color_id)->first();
+		Cart::add(['id' => $productDetail->id, 'name' => $productDetail->product_name, 'qty' => $request->quantity, 'price' => $productDetail->product_price, 'options' => ['size' => $productDetail->size_name,'productCode' => $request->product_code,'color' => $productDetail->color_name,'image' => $image->link]]);
 		// Cart::content()->where('id', $product->id);
     		
     }
-    public function getCart(Request $request)
+    public function getCart()
     {
-    	return response()->json(Cart::content(), 200);
+    	return Cart::content();
+    }
+    public function delItem($rowId)
+    {
+    	Cart::remove($rowId);
+    }
+    public function editItem(Request $request,$rowId)
+    {
+    	Cart::update($rowId, $request->qty);
     }
 }

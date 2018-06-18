@@ -41,7 +41,7 @@ class ProductController extends Controller
     }
     public function anyData()
     {
-        //return Datatables::of(Product::query())->make(true);
+        //return Datatables::of(Product::query())->make(true)
         //
         $products = Product::with('images')->select('products.*', 'categories.name as category_name', 'brands.name as brand_name')
                             ->join('categories', 'products.category_id', '=', 'categories.id')

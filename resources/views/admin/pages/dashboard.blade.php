@@ -136,7 +136,6 @@
     </div>
   </div> 
 
-
   <div class="modal fade" id="detail">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -236,6 +235,7 @@
           
             <button type="submit" class="btn btn-primary" id="upload_submit" name='submitImage'>Upload</button>
           </form>
+          <div class="col-sm-12" id="image_prepare"></div>
           <div class="col-sm-12" id="image_preview"></div>
         </div>
         <div class="modal-footer">
@@ -272,7 +272,7 @@
   .table-row td{
     vertical-align: middle !important;
   }
-  #image_preview{
+  #image_preview,#image_prepare{
     margin-top: 30px;
   }
   .image-append{
@@ -302,6 +302,13 @@
     cursor: pointer;
     background: white;
     border-radius: 50%;
+  }
+  .btn-menu:hover .btn-text{
+    display: inline;
+  }
+  .btn-text{
+    display: none;
+    transition: 0.4s;
   }
 </style>
 @endsection

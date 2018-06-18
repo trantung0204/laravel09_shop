@@ -7,11 +7,13 @@
 		<meta name="keywords" content="HTML5 Template" />
 		<meta name="description" content="YOURStore - Responsive HTML5 Template">
 		<meta name="author" content="etheme.com">
-		<link rel="shortcut icon" href="{{ asset('shop_assets/') }}/favicon.ico">
+		{{-- <link rel="shortcut icon" href="{{ asset('shop_assets/') }}/favicon.ico"> --}}
 		<!-- Mobile Specific Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- External Plugins CSS -->
-		<link rel="shortcut icon" href="{{{ asset('shop_assets/favicon.ico') }}}">
+		{{-- <link rel="shortcut icon" href="{{{ asset('shop_assets/favicon.ico') }}}"> --}}
+		<!-- Latest compiled and minified CSS & JS -->
+		
 		<link rel="stylesheet" href="{{ asset('shop_assets/') }}/external/slick/slick.css">
 		<link rel="stylesheet" href="{{ asset('shop_assets/') }}/external/slick/slick-theme.css">
 		<link rel="stylesheet" href="{{ asset('shop_assets/') }}/external/magnific-popup/magnific-popup.css">
@@ -2238,11 +2240,11 @@
 					<div class="col-lg-12">
 						<div class="social-links social-links--large">
 							<ul>
-								<li><a class="icon fa fa-facebook" href="{{ asset('shop_assets/') }}/http://www.facebook.com/"></a></li>
-								<li><a class="icon fa fa-twitter" href="{{ asset('shop_assets/') }}/http://www.twitter.com/"></a></li>
-								<li><a class="icon fa fa-google-plus" href="{{ asset('shop_assets/') }}/http://www.google.com/"></a></li>
-								<li><a class="icon fa fa-instagram" href="{{ asset('shop_assets/') }}/https://instagram.com/"></a></li>
-								<li><a class="icon fa fa-youtube-square" href="{{ asset('shop_assets/') }}/https://www.youtube.com/"></a></li>
+								<li><a class="icon fa fa-facebook" href="http://www.facebook.com/"></a></li>
+								<li><a class="icon fa fa-twitter" href="http://www.twitter.com/"></a></li>
+								<li><a class="icon fa fa-google-plus" href="http://www.google.com/"></a></li>
+								<li><a class="icon fa fa-instagram" href="https://instagram.com/"></a></li>
+								<li><a class="icon fa fa-youtube-square" href="https://www.youtube.com/"></a></li>
 							</ul>
 						</div>
 					</div>
@@ -2459,7 +2461,7 @@
 		</div>
 		<!-- / Modal (quickViewModal) -->
 		<!-- Modal (newsletter) -->		
-		<div class="modal  modal--bg fade"  id="newsletterModal" data-pause=2000>
+		{{-- <div class="modal  modal--bg fade"  id="newsletterModal" data-pause=2000>
 		  <div class="modal-dialog white-modal">
 		    <div class="modal-content modal-md">
 		      <div class="modal-bg-image bottom-right"> 
@@ -2495,7 +2497,7 @@
 		      </div>
 		    </div>
 		  </div>
-		</div>
+		</div> --}}
 		<!-- / Modal (newsletter) -->
 		<!--================== /modal ==================-->
 

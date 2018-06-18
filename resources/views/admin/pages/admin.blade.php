@@ -118,6 +118,43 @@
     </div>
   </div>
 
+  <div class="modal fade" id="upload">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="title-detail-image"></h4>
+        </div>
+        <div class="modal-body">
+          <form id="images-form" action="" method="POST" class="form-inline" data-url='' role="form" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            {{-- <div class="col-sm-4 form-group">
+              <label for="choose_color">Choose Color</label>
+              <select name="choose_color" id="choose_color" class="form-control" required="required">
+                
+                  
+                
+              </select>
+            </div>
+            <input type="hidden" name="image_product_id" id="image_product_id" value=""> --}}
+            <div class="col-sm-6 form-group">
+              <label for="">Choose images</label>
+              <input  type="file" id="uploadFile" name="uploadFile" class="form-control">
+            </div>
+          
+            
+          
+            <button type="submit" class="btn btn-primary" id="upload_submit" name='submitImage'>Upload</button>
+          </form>
+          <div class="col-sm-12" id="image_preview"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
 
   {{-- <div class="modal fade" id="show">
     <div class="modal-dialog">
@@ -168,6 +205,37 @@
 <style type="text/css" media="screen">
   .table-row td{
     vertical-align: middle !important;
+  }
+  #image_preview{
+    margin-top: 30px;
+  }
+  .image-append{
+     height:100px; 
+     display:inline-block; 
+     opacity: 0.8;
+     transition: 0.2s;
+  }
+  .image-append:hover{
+    opacity: 1;
+  }
+  .image-div{
+    position: relative;
+    display: inline-block;
+    box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
+    margin-right: 15px; 
+    margin-bottom: 15px;
+    border-radius: 6px;
+  }
+  .btn-del-image{
+    position: absolute;
+    transform: translate(50%, 50%);
+    top: -20px ;
+    right: 0px ;
+    color: #D73925;
+    font-size: 20px;
+    cursor: pointer;
+    background: white;
+    border-radius: 50%;
   }
 </style>
 @endsection

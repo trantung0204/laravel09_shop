@@ -41,7 +41,7 @@ class ProductController extends Controller
     }
     public function anyData()
     {
-        //return Datatables::of(Product::query())->make(true);
+        //return Datatables::of(Product::query())->make(true)
         //
         $products = Product::with('images')->select('products.*', 'categories.name as category_name', 'brands.name as brand_name')
                             ->join('categories', 'products.category_id', '=', 'categories.id')
@@ -50,11 +50,11 @@ class ProductController extends Controller
         return Datatables::of($products)
         ->addColumn('action', function ($product) {
             return'
-            <button type="button" class="btn btn-xs btn-default btn-detail" data-url="'.route('getProductDetails', $product->code).'" data-code="'.$product->code.'" data-url-add="'.route('addDetail').'"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-info btn-view" data-url="'.route('products.show', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-eye" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-warning btn-edit" data-url="'.route('products.show', $product->id).'"  data-id="'.$product->id.'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-danger btn-del" data-url="'.route('products.destroy', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-xs btn-success btn-image"  data-url="'.route('listColors', $product->code).'" data-url-image="'.route('listImages', $product->id).'" data-id="'.$product->id.'" data-name="'.$product->name.'"><i class="fa fa-upload" aria-hidden="true"></i> Images</button>
+            <button type="button" class="btn btn-xs btn-default btn-detail btn-menu" data-url="'.route('getProductDetails', $product->code).'" data-code="'.$product->code.'" data-url-add="'.route('addDetail').'"><i class="fa fa-ellipsis-h" aria-hidden="true"></i><span class="btn-text"> Details</span></button>
+            <button type="button" class="btn btn-xs btn-success btn-image btn-menu"  data-url="'.route('listColors', $product->code).'" data-url-image="'.route('listImages', $product->id).'" data-id="'.$product->id.'" data-name="'.$product->name.'"><i class="fa fa-upload" aria-hidden="true"></i><span class="btn-text"> Images</span></button>
+            <button type="button" class="btn btn-xs btn-info btn-view btn-menu" data-url="'.route('products.show', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-eye" aria-hidden="true"></i><span class="btn-text"> Info</span></button>
+            <button type="button" class="btn btn-xs btn-warning btn-edit btn-menu" data-url="'.route('products.show', $product->id).'"  data-id="'.$product->id.'"><i class="fa fa-pencil" aria-hidden="true"></i><span class="btn-text"> Edit</span></button>
+            <button type="button" class="btn btn-xs btn-danger btn-del btn-menu" data-url="'.route('products.destroy', $product->id).'" data-id="'.$product->id.'"><i class="fa fa-trash" aria-hidden="true"></i><span class="btn-text"> Remove</span></button>
             ';
             
         })
@@ -240,7 +240,7 @@ class ProductController extends Controller
         if($files=$request->file('image')){
             foreach($files as $key =>$file){
                 $temp = [];
-                // $temp['link'] = $file->store('images');
+                // $temp['link'] = $file->store('imagesen ');
                 $temp['link'] = Storage::disk('local')->put('public/images', $file);
                 $temp['color_id'] = $request['color_id'];
                 $temp['product_id'] = $request['product_id'];

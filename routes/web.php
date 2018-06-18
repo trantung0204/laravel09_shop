@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('products/create', function () {
+    return view('products.create');
+});
 Route::prefix('admin')->group(function(){
 	Route::middleware('admin.auth')->group( function ()
 	{
@@ -24,6 +26,7 @@ Route::prefix('admin')->group(function(){
 		Route::get('/listColors/{code}', 'Admin\ProductController@getColors')->name('listColors');
 		Route::get('/listImages/{id}', 'Admin\ProductController@getImages')->name('listImages');
 		Route::get('/delImages/{id}', 'Admin\ProductController@delImages')->name('delImages');
+		Route::get('/addProduct', 'Admin\ProductController@addForm')->name('addProduct');
 		
 		Route::resource('categories','Admin\CategoryController');
 		Route::get('/listCategories', 'Admin\CategoryController@anyData')->name('getCategories');
@@ -35,7 +38,8 @@ Route::prefix('admin')->group(function(){
 		Route::get('/listColors', 'Admin\ColorController@anyData')->name('getColors');
 		Route::resource('admins','Admin\AdminController');
 		Route::get('/listAdmins', 'Admin\AdminController@anyData')->name('getAdmins');
-		Route::get('/addProduct', 'Admin\ProductController@addForm')->name('addProduct');
+		Route::post('admins/updateAvatar/{i}', 'Admin\AdminController@updateAvatar')->name('admins.updateAvatar');
+
 	});
     Route::get('login', 'AdminAuth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('login', 'AdminAuth\AdminLoginController@login')->name('admin.auth');
@@ -57,6 +61,22 @@ Route::prefix('shop')->group(function(){
 		
 	});
 	Route::get('/home', 'Shop\ShopController@index')->name('shop.index');
+	Route::get('/category/{slug}', 'Shop\ShopController@categoryList')->name('shop.categoryList');
+	Route::get('/brand/{slug}', 'Shop\ShopController@brandList')->name('shop.brandList');
+	Route::get('/product/{slug}', 'Shop\ShopController@showProduct')->name('shop.showProduct');
+	Route::get('/checkout', 'Shop\ShopController@checkOut')->name('shop.checkOut');
+	//Route::get('/product', 'Shop\ShopController@product')->name('shop.product');
+	Route::get('/qickView/{code}', 'Shop\ShopController@productModal')->name('shop.productModal');
+	Route::get('/getImageByColor/{id}/{color_id}', 'Shop\ShopController@getImageByColor')->name('shop.getImageByColor');
+	Route::get('/getSizeByColor/{code}/{color_id}', 'Shop\ShopController@getSizeByColor')->name('shop.getSizeByColor');
+
+	Route::get('/testCart', 'Shop\CartController@testCart')->name('shop.testCart');
+	Route::get('/getCart', 'Shop\CartController@getCart')->name('shop.getCart');
+	Route::get('/delItem/{rowId}', 'Shop\CartController@delItem')->name('shop.delItem');
+	Route::post('/editItem/{rowId}', 'Shop\CartController@editItem')->name('shop.editItem');
+	Route::post('/addProduct', 'Shop\CartController@addProduct')->name('shop.addProduct');
+
+	Route::post('/addOrder', 'Shop\OrderController@addOrder')->name('shop.addOrder');
 });
 
 Auth::routes();

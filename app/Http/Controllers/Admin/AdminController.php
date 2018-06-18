@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Admin;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Storage;
+use \DB;
 
 class AdminController extends Controller
 {
@@ -24,13 +26,13 @@ class AdminController extends Controller
         return Datatables::of(Admin::all())
         ->addColumn('action', function ($admin) {
             return'
-            <button type="button" class="btn btn-info" data-url="'.route('admins.update', $admin->id).'" data-id="'.$admin->id.'"><i class="fa fa-picture-o" aria-hidden="true"></i> Update Avatar</button>
+            <button type="button" class="btn btn-info btn-avatar" data-url="'.route('admins.updateAvatar',$admin->id).'"data-id="'.$admin->id.'"><i class="fa fa-picture-o" aria-hidden="true"></i> Update Avatar</button>
             ';
             
         })
         ->editColumn('avatar', function ($admin) {
             if (!empty($admin->avatar)) {
-                return '<img class="img-responsive center-block" style="width:70px;border-radius:5px;" src="'. asset($admin->avatar) .'"/>';
+                return '<img class="img-responsive center-block" style="width:70px;border-radius:5px;"  src="'.url(Storage::url($admin->avatar)).'" />';
             } else {
                 return '<img class="img-responsive center-block" style="width:70px;border-radius:5px;" src="'. asset("admin_assets/dist/img/default-avatar.jpg").'"/>';
             }
@@ -45,6 +47,17 @@ class AdminController extends Controller
         ->setRowClass('table-row')
         ->rawColumns(['action','avatar'])
         ->make(true);
+    }
+    
+    public function updateAvatar(Request $request, $id)
+    {      
+
+        $link='';
+        if($file=$request->file('image')){
+                $link = Storage::disk('local')->put('public/avatars', $file);
+                DB::table('admins')->where('id', $id)->update(['avatar' => $link]);
+        }
+        return response()->json(['data' => $link], 200);
     }
 
 
